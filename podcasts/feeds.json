@@ -1,0 +1,23 @@
+{
+  "generated_at": "2026-11-11T21:29:28+00:00",
+  "feeds": [
+    {
+      "title": "This Week in Linux",
+      "filename": "This_Week_in_Linux.rss",
+      "url": "podcasts/This_Week_in_Linux.rss",
+      "source_url": "https://feeds.fireside.fm/thisweekinlinux/rss"
+    },
+    {
+      "title": "Linux Unplugged",
+      "filename": "Linux_Unplugged.rss",
+      "url": "podcasts/Linux_Unplugged.rss",
+      "source_url": "https://feeds.jupiterbroadcasting.com/lup"
+    },
+    {
+      "title": "Late Night Linux",
+      "filename": "Late_Night_Linux.rss",
+      "url": "podcasts/Late_Night_Linux.rss",
+      "source_url": "https://latenightlinux.com/feed/mp3"
+    }
+  ]
+}
