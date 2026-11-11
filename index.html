@@ -25,7 +25,6 @@
                 feed: '#playlist',
                 channel: '#chan_info',
                 item: '#item_info',
-                extra: '#extra_content',
                 modal: '#feedInfoModal',
                 modal_body: '#feedModalBody'
             });
@@ -49,25 +48,20 @@
             <div class="collapse navbar-collapse" id="menu">
                 <ul class="nav navbar-nav nav-tabs">
                     <li class="active">
-                        <a data-toggle="tab" href="#home" title="Home &amp; Cached Podcasts">
+                        <a data-toggle="tab" href="#home" title="Home">
                             <span class="glyphicon glyphicon-home"></span>
                         </a>
                     </li>
                     <li>
-                        <a data-toggle="tab" href="#chan" title="Podcast Episodes &amp; Player">
+                        <a data-toggle="tab" href="#chan" title="Podcasts &amp; Episodes">
                             <span class="glyphicon glyphicon-globe"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a data-toggle="tab" href="#extra" title="Feed Metadata Inspector">
-                            <span class="glyphicon glyphicon-info-sign"></span>
                         </a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="#" class="open-feed-modal" title="Open Feed Data Pop-up">
-                            <span class="glyphicon glyphicon-info-sign"></span> Feed Data Pop-up
+                        <a href="#" class="open-feed-modal" data-inspector-tab="channel" title="Feed &amp; Episode Metadata">
+                            <span class="glyphicon glyphicon-info-sign"></span> Feed Data
                         </a>
                     </li>
                 </ul>
@@ -77,14 +71,14 @@
 
     <div class="container-fluid">
         <div class="tab-content">
-            <!-- Home Tab: Cached Podcasts List + Hero Image -->
+            <!-- Home Tab: Cached Podcasts + Old Projects on Left, Tall Banner on Right -->
             <div id="home" class="tab-pane fade in active">
                 <div class="row">
                     <div class="col-md-3 col-sm-4">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Cached Podcasts
+                                    <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Podcasts
                                 </h4>
                             </div>
                             <div class="panel-body">
@@ -99,11 +93,7 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-9 col-sm-8">
-                        <div class="jumbotron feedme-hero">
-                            <img src="static/feedme.jpg" alt="FeedMe, in browser podcast reader and player" class="img-responsive center-block feedme-banner" />
-                        </div>
+
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">My Original Related PHP/JS Projects</h4>
@@ -119,24 +109,30 @@
                                     <li><a href="https://www.phpclasses.org/package/9876-PHP-Display-ebooks-in-the-epub-format-on-Web-pages.html" target="_blank" rel="noopener noreferrer">eKatab ePub reader</a></li>
                                     <li><a href="https://www.phpclasses.org/package/11667-PHP-Display-images-from-comic-books-in-HTML-pages.html" target="_blank" rel="noopener noreferrer">PHP Comic Reader Tools</a></li>
                                 </ul>
-                                <p class="text-muted" style="margin-top: 10px; margin-bottom: 0;">
+                                <p class="text-muted small" style="margin-top: 10px; margin-bottom: 0;">
                                     These projects are no longer being developed, but are still available for use. Some may be translated to Python in the future as part of this project.
                                 </p>
                             </div>
                         </div>
                     </div>
+
+                    <div class="col-md-9 col-sm-8">
+                        <div class="jumbotron feedme-hero">
+                            <img src="static/feedme.jpg" alt="FeedMe, in browser podcast reader and player" class="img-responsive center-block feedme-banner" />
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Globe Tab: Loaded Podcast Episodes Sidebar + Episode Player -->
+            <!-- Globe Tab: 40% Episodes Sidebar + 60% Current Episode -->
             <div id="chan" class="tab-pane fade">
-                <div class="row">
-                    <div class="col-md-4 col-lg-3">
+                <div class="row chan-layout">
+                    <div class="chan-episodes-col">
                         <div class="panel panel-default">
                             <div class="panel-heading clearfix">
-                                <span class="glyphicon glyphicon-globe"></span> <strong>Loaded Episodes</strong>
+                                <span class="glyphicon glyphicon-globe"></span> <strong>Episodes</strong>
                                 <div class="pull-right">
-                                    <button type="button" class="btn btn-xs btn-default open-feed-modal" title="View Feed Data Pop-up">
+                                    <button type="button" class="btn btn-xs btn-default open-feed-modal" data-inspector-tab="channel" title="Channel &amp; Episode Metadata">
                                         <span class="glyphicon glyphicon-info-sign"></span>
                                     </button>
                                     <a href="#" id="reorder_playlist" class="btn btn-xs btn-default" title="Reverse Episode Order">
@@ -146,7 +142,7 @@
                             </div>
                             <div class="panel-body">
                                 <div id="chan_info">
-                                    <p class="text-muted">Select a cached podcast from the Home tab to load its episodes.</p>
+                                    <p class="text-muted">Select a podcast on the Home tab to load its episodes.</p>
                                 </div>
                                 <hr />
                                 <div class="input-group input-group-sm" style="margin-bottom: 10px;">
@@ -157,30 +153,17 @@
                             </div>
                         </div>
                     </div>
-                    <div id="item_info" class="col-md-8 col-lg-9">
+                    <div id="item_info" class="chan-player-col">
                         <div class="alert alert-info">
-                            <strong>No podcast loaded.</strong> Choose a cached podcast on the Home tab to browse and play episodes.
+                            <strong>No podcast loaded.</strong> Choose a podcast on the Home tab to browse and play episodes.
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Info Tab: Professional Feed Data Presentation Grouped by Importance -->
-            <div id="extra" class="tab-pane fade">
-                <div class="page-header clearfix" style="margin-top: 10px;">
-                    <h2 style="margin-top: 0;">
-                        <span class="glyphicon glyphicon-info-sign"></span> Feed Data
-                        <button type="button" class="btn btn-primary btn-sm pull-right open-feed-modal">
-                            <span class="glyphicon glyphicon-new-window"></span> Open Pop-up
-                        </button>
-                    </h2>
-                </div>
-                <div id="extra_content"></div>
-            </div>
         </div>
     </div>
 
-    <!-- Feed Data Pop-up Modal -->
+    <!-- Feed Data Pop-up Modal (Channel Tab + Episode Tab) -->
     <div class="modal fade" id="feedInfoModal" tabindex="-1" role="dialog" aria-labelledby="feedInfoModalLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">

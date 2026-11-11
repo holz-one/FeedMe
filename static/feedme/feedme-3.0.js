@@ -385,8 +385,10 @@ function detectType(str) {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (emailPattern.test(str)) return '<a href="mailto:' + str + '">' + str + '</a>';
 
-    // Test for date (RFC 2822 or ISO) - ignore pure integers like pixel dimensions or TTL
-    if (!/^\d+$/.test(str.trim())) {
+    // Test for date (RFC 2822 or ISO 8601) - avoid false positives on episode titles like "Episode 01"
+    const rfc2822Pattern = /^(?:(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun),?\s+)?\d{1,2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{4}\b/i;
+    const isoDatePattern = /^\d{4}-\d{2}-\d{2}(?:[T\s]\d{2}:\d{2}(?::\d{2})?(?:Z|[+-]\d{2}:?\d{2})?)?$/;
+    if (rfc2822Pattern.test(str.trim()) || isoDatePattern.test(str.trim())) {
         const date = new Date(str);
         if (!isNaN(date.getTime())) return formatDate(str);
     }
@@ -570,6 +572,22 @@ function detectType(str) {
         return $panel;
     }
 
+    function renderImportanceSections($pane, grouped, panelClass, emptyAlertMsg) {
+        var total = 0;
+        $.each(IMPORTANCE_GROUPS, function (_, grp) {
+            var rows = grouped[grp.key];
+            if (rows.length) {
+                total += rows.length;
+                $pane.append(
+                    buildSectionPanel(grp.label, panelClass, rows, '')
+                );
+            }
+        });
+        if (!total) {
+            $pane.append($('<div>').addClass('alert alert-info').text(emptyAlertMsg));
+        }
+    }
+
     function renderFeedInspector($container, feed, item, idPrefix) {
         if (!$container || !$container.length) return;
         $container.empty();
@@ -577,7 +595,7 @@ function detectType(str) {
         if (!feed) {
             $container.append(
                 $('<div>').addClass('alert alert-info').html(
-                    '<strong>No podcast feed loaded yet.</strong> Choose a cached podcast on the Home tab to inspect its channel and episode metadata.'
+                    '<strong>No podcast feed loaded yet.</strong> Choose a podcast on the Home tab to inspect channel and episode metadata.'
                 )
             );
             return;
@@ -586,17 +604,40 @@ function detectType(str) {
         var chanGroups = flattenFeedFields(feed, CHANNEL_IMPORTANCE);
         var itemGroups = flattenFeedFields(item, ITEM_IMPORTANCE);
 
+        var countGroupTotal = function (grouped) {
+            return grouped.essential.length + grouped.details.length + grouped.technical.length;
+        };
+
+        var tabs = [
+            {
+                key: 'channel',
+                label: 'Channel',
+                badgeClass: 'label-primary',
+                panelClass: 'panel-primary',
+                grouped: chanGroups,
+                count: countGroupTotal(chanGroups),
+                emptyMsg: 'No channel metadata available.'
+            },
+            {
+                key: 'episode',
+                label: 'Episode',
+                badgeClass: 'label-info',
+                panelClass: 'panel-info',
+                grouped: itemGroups,
+                count: countGroupTotal(itemGroups),
+                emptyMsg: 'Select an episode from the Episodes sidebar to inspect episode metadata.'
+            }
+        ];
+
         var $nav = $('<ul>').addClass('nav nav-tabs feed-inspector-tabs').attr('role', 'tablist');
         var $tabContent = $('<div>').addClass('tab-content');
 
-        $.each(IMPORTANCE_GROUPS, function (idx, grp) {
-            var tabId = idPrefix + grp.key;
-            var totalCount = chanGroups[grp.key].length + itemGroups[grp.key].length;
-
+        $.each(tabs, function (idx, tab) {
+            var tabId = idPrefix + tab.key;
             var $a = $('<a>')
                 .attr({ href: '#' + tabId, role: 'tab', 'data-toggle': 'tab' })
-                .text(grp.label + ' ')
-                .append($('<span>').addClass('label ' + grp.badgeClass).text(totalCount));
+                .text(tab.label + ' ')
+                .append($('<span>').addClass('label ' + tab.badgeClass).text(tab.count));
             var $li = $('<li>').attr('role', 'presentation').append($a);
             if (idx === 0) $li.addClass('active');
             $nav.append($li);
@@ -604,25 +645,7 @@ function detectType(str) {
             var $pane = $('<div>')
                 .addClass('tab-pane fade' + (idx === 0 ? ' in active' : ''))
                 .attr({ id: tabId, role: 'tabpanel' });
-
-            $pane.append(
-                buildSectionPanel(
-                    'Podcast Channel',
-                    'panel-primary',
-                    chanGroups[grp.key],
-                    'No channel fields in this importance group.'
-                )
-            );
-            $pane.append(
-                buildSectionPanel(
-                    'Current Episode',
-                    'panel-info',
-                    itemGroups[grp.key],
-                    item
-                        ? 'No episode fields in this importance group.'
-                        : 'Select an episode in the Globe tab to inspect episode-level data.'
-                )
-            );
+            renderImportanceSections($pane, tab.grouped, tab.panelClass, tab.emptyMsg);
             $tabContent.append($pane);
         });
 
@@ -637,10 +660,7 @@ function detectType(str) {
             feed_list: '#podcast',
             feed: '#playlist',
             channel: '#chan_info',
-            channel_ex: '#chan_extra',
             item: '#item_info',
-            item_ex: '#item_extra',
-            extra: '#extra_content',
             modal: '#feedInfoModal',
             modal_body: '#feedModalBody'
         };
@@ -658,14 +678,16 @@ function detectType(str) {
         };
         var rss_img = function (img) { return '<img src="' + img + '" class="img-responsive center-block" alt="Podcast artwork"/>'; };
 
-        var refreshInspector = function () {
-            renderFeedInspector($(opt.extra), currentFeed, currentItem, 'tab-');
+        var refreshInspector = function (activeTab) {
             renderFeedInspector($(opt.modal_body), currentFeed, currentItem, 'modal-');
             var modalTitle = 'Feed Data';
             if (currentFeed && currentFeed.title) {
                 modalTitle = currentFeed.title + (currentItem && currentItem.title ? ' — ' + currentItem.title : '');
             }
             $('#feedInfoModalLabel').html('<span class="glyphicon glyphicon-info-sign"></span> ').append(document.createTextNode(modalTitle));
+            if (activeTab) {
+                $(opt.modal_body + ' .feed-inspector-tabs a[href="#modal-' + activeTab + '"]').tab('show');
+            }
         };
 
         var seenLinks = {};
@@ -763,10 +785,10 @@ function detectType(str) {
             $(opt.item).append(
                 $('<div>').addClass('panel panel-default').append(
                     $('<div>').addClass('panel-body').append(
-                        $('<h4>').text(feed.title || 'Loaded Podcast'),
-                        $('<p>').text(episodeCount + ' episodes loaded in the Globe tab sidebar. Select an episode to view show notes and play media.'),
-                        $('<button type="button" class="btn btn-info btn-sm open-feed-modal">')
-                            .html('<span class="glyphicon glyphicon-info-sign"></span> View Feed Data Pop-up')
+                        $('<h4>').text(feed.title || 'Podcast'),
+                        $('<p>').text(episodeCount + ' episodes loaded. Select an episode from the sidebar to view show notes and play media.'),
+                        $('<button type="button" class="btn btn-info btn-sm open-feed-modal" data-inspector-tab="channel">')
+                            .html('<span class="glyphicon glyphicon-info-sign"></span> Feed Data')
                     )
                 )
             );
@@ -793,7 +815,7 @@ function detectType(str) {
             var $panel = $('<div>').addClass('panel panel-default');
             var $heading = $('<div>').addClass('panel-heading clearfix').append(
                 $('<h3>').addClass('panel-title pull-left').css('padding-top', '4px').text(i.title || 'Untitled Episode'),
-                $('<button type="button" class="btn btn-xs btn-info pull-right open-feed-modal">')
+                $('<button type="button" class="btn btn-xs btn-info pull-right open-feed-modal" data-inspector-tab="episode">')
                     .html('<span class="glyphicon glyphicon-info-sign"></span> Feed Data')
             );
             var $body = $('<div>').addClass('panel-body');
@@ -828,7 +850,8 @@ function detectType(str) {
 
         $(document).on('click', '.open-feed-modal', function (e) {
             e.preventDefault();
-            refreshInspector();
+            var requestedTab = $(this).data('inspectorTab') || 'channel';
+            refreshInspector(requestedTab);
             $(opt.modal).modal('show');
         });
 

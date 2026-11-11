@@ -8,9 +8,9 @@ I have done some repairs to the code and tested it with jQuery 3.7.1, removing p
 
 ## Interface Overview
 
-- **Home Tab (`#home`)**: Displays the cached podcasts sidebar (`podcasts/feeds.json`) with live search filtering alongside the FeedMe banner.
-- **Globe Tab (`#chan`)**: Displays the loaded podcast's channel overview and searchable/sortable episode playlist in the tab sidebar, with the episode media player and show notes in the main pane.
-- **Info Tab (`#extra`) & Feed Data Pop-up**: Presents channel and current-episode metadata in a structured inspector grouped across tabs by importance (**Essential**, **Details & iTunes**, and **Technical & Protocol**), accessible both in the Info tab and as a modal pop-up.
+- **Home Tab (`#home`)**: Displays the cached podcasts sidebar (`podcasts/feeds.json`) with live search filtering and original related projects in the left column, alongside the FeedMe banner.
+- **Globe Tab (`#chan`)**: Splits the view 40% / 60% between the searchable/sortable **Episodes** sidebar (`#chan_info` and `#playlist`) and the current episode media player and show notes (`#item_info`).
+- **Feed Data Pop-up (`#feedInfoModal`)**: Displays **Channel** metadata (first tab) and **Episode** metadata (second tab) in the same modal pop-up, with fields grouped into importance panels (**Essential**, **Details & iTunes**, and **Technical & Protocol**).
 
 ## Project Structure
 
@@ -102,7 +102,6 @@ jQuery(function ($) {
         feed: '#playlist',
         channel: '#chan_info',
         item: '#item_info',
-        extra: '#extra_content',
         modal: '#feedInfoModal',
         modal_body: '#feedModalBody'
     });
