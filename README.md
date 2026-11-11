@@ -1,8 +1,16 @@
 # FeedMe 3.0 - jQuery RSS 2.0 + ATOM/iTunes Parser
 
+![FeedMe 3.0](static/feedme.jpg)
+
 FeedMe is a basic RSS feed and Podcast parser with XML namespace support for JavaScript and jQuery web apps, now packaged as a static site for GitHub Pages with daily feed caching via GitHub Actions.
 
 I have done some repairs to the code and tested it with jQuery 3.7.1, removing properties that are left empty or undefined so that the returned object is smaller and has less wasted space.
+
+## Interface Overview
+
+- **Home Tab (`#home`)**: Displays the cached podcasts sidebar (`podcasts/feeds.json`) with live search filtering alongside the FeedMe banner.
+- **Globe Tab (`#chan`)**: Displays the loaded podcast's channel overview and searchable/sortable episode playlist in the tab sidebar, with the episode media player and show notes in the main pane.
+- **Info Tab (`#extra`) & Feed Data Pop-up**: Presents channel and current-episode metadata in a structured inspector grouped across tabs by importance (**Essential**, **Details & iTunes**, and **Technical & Protocol**), accessible both in the Info tab and as a modal pop-up.
 
 ## Project Structure
 
@@ -14,7 +22,9 @@ I have done some repairs to the code and tested it with jQuery 3.7.1, removing p
 ├── podcasts.yaml                            # Podcast feed subscriptions (also supports podcast.yaml)
 ├── podcasts/                                # Cached .rss feeds + generated feeds.json manifest
 ├── requirements.txt                         # Python dependencies for cache_rss.py
-└── static/feedme/                           # CSS, JS, and Bootstrap font assets
+└── static/
+    ├── feedme.jpg                           # FeedMe banner illustration
+    └── feedme/                              # CSS, JS, and Bootstrap font assets
 ```
 
 ## Caching Podcast Feeds Locally
@@ -79,7 +89,7 @@ On each run, the workflow installs Python dependencies, runs `python cache_rss.p
 * Reference for iTunes Podcasting: [spec](http://www.apple.com/itunes/podcasts/specs.html) [howto](http://www.podcast411.com/howto_1.html)
 * Reference for [ATOM](http://tools.ietf.org/html/rfc4287)
 
-This class returns a normal JavaScript object.
+This class returns a normal Javascript object.
 
 ### Display Example with my jQuery Plugin, `feedRead`:
 
@@ -91,7 +101,10 @@ jQuery(function ($) {
         feed_list: '#podcast',
         feed: '#playlist',
         channel: '#chan_info',
-        item: '#item_info'
+        item: '#item_info',
+        extra: '#extra_content',
+        modal: '#feedInfoModal',
+        modal_body: '#feedModalBody'
     });
 });
 ```

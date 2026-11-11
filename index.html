@@ -22,7 +22,12 @@
                 itunes: true, //podcast url
                 manifest: 'podcasts/feeds.json',
                 feed_list: '#podcast',
-                feed: '#playlist'
+                feed: '#playlist',
+                channel: '#chan_info',
+                item: '#item_info',
+                extra: '#extra_content',
+                modal: '#feedInfoModal',
+                modal_body: '#feedModalBody'
             });
         });
     </script>
@@ -44,83 +49,150 @@
             <div class="collapse navbar-collapse" id="menu">
                 <ul class="nav navbar-nav nav-tabs">
                     <li class="active">
-                        <a data-toggle="tab" href="#home">
+                        <a data-toggle="tab" href="#home" title="Home &amp; Cached Podcasts">
                             <span class="glyphicon glyphicon-home"></span>
                         </a>
                     </li>
                     <li>
-                        <a data-toggle="tab" href="#chan">
+                        <a data-toggle="tab" href="#chan" title="Podcast Episodes &amp; Player">
                             <span class="glyphicon glyphicon-globe"></span>
                         </a>
                     </li>
                     <li>
-                        <a data-toggle="tab" href="#extra">
+                        <a data-toggle="tab" href="#extra" title="Feed Metadata Inspector">
                             <span class="glyphicon glyphicon-info-sign"></span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" class="open-feed-modal" title="Open Feed Data Pop-up">
+                            <span class="glyphicon glyphicon-info-sign"></span> Feed Data Pop-up
                         </a>
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
+
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-2">
-                <span class="glyphicon glyphicon-search"></span>
-                <input type="text" id="searchPodcast" placeholder="Filter Podcasts" />
-                <ul id="podcast">
-                    <li>
-                        <hr />
-                        <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Podcasts <span class="caret"></span>
-                        <hr />
-                        <ul id="files"></ul>
-                        <hr />
-                    </li>
-                </ul>
-            </div>
-            <div class="tab-content col-md-10">
-                <div id="home" class="tab-pane fade in active">
-                    <div class="jumbotron" style="text-align: center; background-color: hsla(0, 3%, 60%, 0.657); color: #ffffff;">
-                        <h1>FeedMe 3.0</h1>
-                        <p>
-                            Welcome to FeedMe, the in-browser podcast reader and player!
-                            This is the FeedMe 3.0 static web interface, parsing RSS 2.0 and ATOM/iTunes feeds directly in your browser.
-                        </p>
-                        <p>
-                            Podcast subscriptions are configured in <code>podcasts.yaml</code> and cached daily into the <code>podcasts/</code> folder via GitHub Actions for GitHub Pages.
-                            Enjoy your favorite shows all in one place. Happy podcasting!
-                        </p>
-                    </div>
-                    <h4>My Original Related PHP/JS Projects</h4>
-                    <ul>
-                        <li><a href="https://www.phpclasses.org/package/7693-PHP-Generate-JSON-from-podcast-feeds-to-serve-players.html" target="_blank">ProxyCast</a></li>
-                        <li><a href="https://www.phpclasses.org/package/7973-PHP-Generate-RSS-feeds-for-podcasts.html" target="_blank">SalamCast PHP Podcast Generator</a></li>
-                        <li><a href="https://www.phpclasses.org/package/7968-PHP-Scan-directories-for-files-with-certain-extensions.html" target="_blank">WaldScan</a></li>
-                        <li><a href="https://www.jsclasses.org/package/194-JavaScript-Retrieve-and-parse-a-RSS-feed.html" target="_blank">FeedMe</a></li>
-                        <li><a href="https://www.jsclasses.org/package/191-JavaScript-Play-podcast-episodes-from-RSS-feed-using-jPlayer.html" target="_blank">SalamCast Podcast Player</a></li>
-                        <li><a href="https://www.phpclasses.org/package/7573-PHP-Combine-CSS-and-images-into-a-single-stylesheet.html" target="_blank">CSS One</a></li>
-                        <li><a href="https://www.phpclasses.org/package/9876-PHP-Display-ebooks-in-the-epub-format-on-Web-pages.html" target="_blank">eKatab ePub reader</a></li>
-                        <li><a href="https://www.phpclasses.org/package/11667-PHP-Display-images-from-comic-books-in-HTML-pages.html" target="_blank">PHP Comic Reader Tools</a></li>
-                    </ul>
-                    <p>
-                        These projects are no longer being developed, but are still available for use. Some may be translated to Python in the future as part of this project.
-                    </p>
-                </div>
-                <div id="chan" class="tab-pane fade">
-                    <div class="row">
-                        <div class="col-md-3" style="align-content: center;">
-                            <div id="chan_info"></div>
-                            <h3>Playlist <a href="#" id="reorder_playlist"><span class="glyphicon glyphicon-sort"></span></a></h3>
-                            <ul id="playlist"><li><a href="#"></a></li></ul>
+        <div class="tab-content">
+            <!-- Home Tab: Cached Podcasts List + Hero Image -->
+            <div id="home" class="tab-pane fade in active">
+                <div class="row">
+                    <div class="col-md-3 col-sm-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Cached Podcasts
+                                </h4>
+                            </div>
+                            <div class="panel-body">
+                                <div class="input-group input-group-sm" style="margin-bottom: 10px;">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+                                    <input type="text" id="searchPodcast" class="form-control" placeholder="Filter Podcasts" />
+                                </div>
+                                <ul id="podcast">
+                                    <li>
+                                        <ul id="files" class="nav nav-pills nav-stacked"></ul>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                        <!-- item info -->
-                        <div id="item_info" class="col-md-9"></div>
+                    </div>
+                    <div class="col-md-9 col-sm-8">
+                        <div class="jumbotron feedme-hero">
+                            <img src="static/feedme.jpg" alt="FeedMe, in browser podcast reader and player" class="img-responsive center-block feedme-banner" />
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">My Original Related PHP/JS Projects</h4>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="list-unstyled">
+                                    <li><a href="https://www.phpclasses.org/package/7693-PHP-Generate-JSON-from-podcast-feeds-to-serve-players.html" target="_blank" rel="noopener noreferrer">ProxyCast</a></li>
+                                    <li><a href="https://www.phpclasses.org/package/7973-PHP-Generate-RSS-feeds-for-podcasts.html" target="_blank" rel="noopener noreferrer">SalamCast PHP Podcast Generator</a></li>
+                                    <li><a href="https://www.phpclasses.org/package/7968-PHP-Scan-directories-for-files-with-certain-extensions.html" target="_blank" rel="noopener noreferrer">WaldScan</a></li>
+                                    <li><a href="https://www.jsclasses.org/package/194-JavaScript-Retrieve-and-parse-a-RSS-feed.html" target="_blank" rel="noopener noreferrer">FeedMe</a></li>
+                                    <li><a href="https://www.jsclasses.org/package/191-JavaScript-Play-podcast-episodes-from-RSS-feed-using-jPlayer.html" target="_blank" rel="noopener noreferrer">SalamCast Podcast Player</a></li>
+                                    <li><a href="https://www.phpclasses.org/package/7573-PHP-Combine-CSS-and-images-into-a-single-stylesheet.html" target="_blank" rel="noopener noreferrer">CSS One</a></li>
+                                    <li><a href="https://www.phpclasses.org/package/9876-PHP-Display-ebooks-in-the-epub-format-on-Web-pages.html" target="_blank" rel="noopener noreferrer">eKatab ePub reader</a></li>
+                                    <li><a href="https://www.phpclasses.org/package/11667-PHP-Display-images-from-comic-books-in-HTML-pages.html" target="_blank" rel="noopener noreferrer">PHP Comic Reader Tools</a></li>
+                                </ul>
+                                <p class="text-muted" style="margin-top: 10px; margin-bottom: 0;">
+                                    These projects are no longer being developed, but are still available for use. Some may be translated to Python in the future as part of this project.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div id="extra" class="tab-pane fade">
-                    <h3>Channel Information</h3>
-                    <div id="chan_extra"></div>
-                    <h3>Current Item Information</h3>
-                    <div id="item_extra"></div>
+            </div>
+
+            <!-- Globe Tab: Loaded Podcast Episodes Sidebar + Episode Player -->
+            <div id="chan" class="tab-pane fade">
+                <div class="row">
+                    <div class="col-md-4 col-lg-3">
+                        <div class="panel panel-default">
+                            <div class="panel-heading clearfix">
+                                <span class="glyphicon glyphicon-globe"></span> <strong>Loaded Episodes</strong>
+                                <div class="pull-right">
+                                    <button type="button" class="btn btn-xs btn-default open-feed-modal" title="View Feed Data Pop-up">
+                                        <span class="glyphicon glyphicon-info-sign"></span>
+                                    </button>
+                                    <a href="#" id="reorder_playlist" class="btn btn-xs btn-default" title="Reverse Episode Order">
+                                        <span class="glyphicon glyphicon-sort"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div id="chan_info">
+                                    <p class="text-muted">Select a cached podcast from the Home tab to load its episodes.</p>
+                                </div>
+                                <hr />
+                                <div class="input-group input-group-sm" style="margin-bottom: 10px;">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+                                    <input type="text" id="searchEpisode" class="form-control" placeholder="Filter Episodes" />
+                                </div>
+                                <ul id="playlist" class="nav nav-pills nav-stacked"></ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="item_info" class="col-md-8 col-lg-9">
+                        <div class="alert alert-info">
+                            <strong>No podcast loaded.</strong> Choose a cached podcast on the Home tab to browse and play episodes.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info Tab: Professional Feed Data Presentation Grouped by Importance -->
+            <div id="extra" class="tab-pane fade">
+                <div class="page-header clearfix" style="margin-top: 10px;">
+                    <h2 style="margin-top: 0;">
+                        <span class="glyphicon glyphicon-info-sign"></span> Feed Data
+                        <button type="button" class="btn btn-primary btn-sm pull-right open-feed-modal">
+                            <span class="glyphicon glyphicon-new-window"></span> Open Pop-up
+                        </button>
+                    </h2>
+                </div>
+                <div id="extra_content"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feed Data Pop-up Modal -->
+    <div class="modal fade" id="feedInfoModal" tabindex="-1" role="dialog" aria-labelledby="feedInfoModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="feedInfoModalLabel">
+                        <span class="glyphicon glyphicon-info-sign"></span> Feed Data
+                    </h4>
+                </div>
+                <div class="modal-body" id="feedModalBody"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>

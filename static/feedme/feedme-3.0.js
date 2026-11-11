@@ -53,14 +53,15 @@ var feedMe = function ($url) {
     // RSS items in both channel and item
     // ********************************************************************************
     // RSS feed title, should be the same as the HTML title for channel and title for the item
-    var title = function (c) { return c.find('title').first().text(); };
+    var title = function (c) { return c.children('title').first().text() || c.find('title').first().text(); };
     // RSS feed link for main site for channel and url for feed item
-    var link = function (c) { return c.find('link').first().text(); };
+    var link = function (c) { return c.children('link').first().text() || c.find('link').first().text(); };
     // RSS description for both channel and item
-    var description = function (c) { return c.find('description').first().text(); };
-    // RSS category, this just selects everything with a category, even in items
-    // i'll need to figure out something for later to not select the categores in items
-    var category = function (c) { return c.find('category').text(); };
+    var description = function (c) { return c.children('description').first().text() || c.find('description').first().text(); };
+    // RSS category, selecting direct children only so channel category doesn't concatenate all item categories
+    var category = function (c) {
+        return c.children('category').map(function () { return $.trim($(this).text()); }).get().filter(Boolean).join(', ');
+    };
     // ********************************************************************************
     // iTunes items both in channel and item/entry tags
     // ********************************************************************************
@@ -89,18 +90,19 @@ var feedMe = function ($url) {
      <itunes:owner>		        Y	 	        not visible, used for contact only
      // ********************************************************************************  */
     var i_channel = function (c) {
+        var ch = c.children();
         var i = {};
-        i.author = i_author(c);
-        i.block = i_block(c);
-        i.category = c.find('*').ns_filter(opts.itunes, 'category').attr('text');
-        i.img = i_image(c);
-        i.explicit = i_explicit(c);
-        i.complete = c.find('*').ns_filter(opts.itunes, 'complete').first().text();
-        i.keywords = i_keywords(c);
-        i.new_feed_url = c.find('*').ns_filter(opts.itunes, 'new-feed-url').first().text();
-        i.owner = c.find('*').ns_filter(opts.itunes, 'owner').first().text();
-        i.subtitle = i_subtitle(c);
-        i.desc = i_summary(c);
+        i.author = ch.ns_filter(opts.itunes, 'author').first().text();
+        i.block = ch.ns_filter(opts.itunes, 'block').first().text();
+        i.category = ch.ns_filter(opts.itunes, 'category').map(function () { return $(this).attr('text'); }).get().filter(Boolean).join(', ');
+        i.img = ch.ns_filter(opts.itunes, 'image').first().attr('href');
+        i.explicit = ch.ns_filter(opts.itunes, 'explicit').first().text();
+        i.complete = ch.ns_filter(opts.itunes, 'complete').first().text();
+        i.keywords = ch.ns_filter(opts.itunes, 'keywords').first().text();
+        i.new_feed_url = ch.ns_filter(opts.itunes, 'new-feed-url').first().text();
+        i.owner = ch.ns_filter(opts.itunes, 'owner').first().text();
+        i.subtitle = ch.ns_filter(opts.itunes, 'subtitle').first().text();
+        i.desc = ch.ns_filter(opts.itunes, 'summary').first().text();
         return i;
     };
     // ********************************************************************************
@@ -359,22 +361,37 @@ function formatDate(rfc2822Str) {
     });
 }
 
+function formatBytes(bytesVal) {
+    var num = Number(bytesVal);
+    if (!isFinite(num) || num <= 0) return String(bytesVal);
+    var units = ['B', 'KB', 'MB', 'GB'];
+    var idx = 0;
+    var scaled = num;
+    while (scaled >= 1024 && idx < units.length - 1) {
+        scaled /= 1024;
+        idx += 1;
+    }
+    return scaled.toFixed(idx === 0 ? 0 : 1) + ' ' + units[idx] + ' (' + num.toLocaleString() + ' bytes)';
+}
+
 function detectType(str) {
     if (typeof str !== 'string') return str;
 
     // Test for URL
     const urlPattern = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
-    if (urlPattern.test(str)) return '<a href="' + str + '" target="_blank">' + str + '</a>';
+    if (urlPattern.test(str)) return '<a href="' + str + '" target="_blank" rel="noopener noreferrer">' + str + '</a>';
 
     // Test for email
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (emailPattern.test(str)) return '<a href="mailto:' + str + '">' + str + '</a>';
 
-    // Test for date (RFC 2822 or ISO)
-    const date = new Date(str);
-    if (!isNaN(date.getTime())) return formatDate(str);
+    // Test for date (RFC 2822 or ISO) - ignore pure integers like pixel dimensions or TTL
+    if (!/^\d+$/.test(str.trim())) {
+        const date = new Date(str);
+        if (!isNaN(date.getTime())) return formatDate(str);
+    }
 
-    return str;
+    return $('<span>').text(str).html();
 }
 
 //feedRead
@@ -385,53 +402,270 @@ function detectType(str) {
  * feeds contain HTML 5 compatible content.
  */
 (function ($) {
+    var IMPORTANCE_GROUPS = [
+        { key: 'essential', label: 'Essential', badgeClass: 'label-primary' },
+        { key: 'details', label: 'Details & iTunes', badgeClass: 'label-info' },
+        { key: 'technical', label: 'Technical & Protocol', badgeClass: 'label-default' }
+    ];
+
+    var CHANNEL_IMPORTANCE = {
+        'title': { group: 'essential', label: 'Show Title' },
+        'link': { group: 'essential', label: 'Website' },
+        'description': { group: 'essential', label: 'Description', html: true },
+        'itunes.desc': { group: 'essential', label: 'iTunes Summary', html: true },
+        'itunes.subtitle': { group: 'essential', label: 'Subtitle' },
+        'itunes.author': { group: 'essential', label: 'Author / Network' },
+        'author': { group: 'essential', label: 'Author' },
+        'pubDate': { group: 'essential', label: 'Published Date' },
+        'lastBuildDate': { group: 'essential', label: 'Last Build Date' },
+        'lang': { group: 'essential', label: 'Language' },
+        'itunes.img': { group: 'essential', label: 'Cover Artwork', image: true },
+        'image.url': { group: 'essential', label: 'RSS Image URL', image: true },
+
+        'category': { group: 'details', label: 'RSS Category' },
+        'itunes.category': { group: 'details', label: 'iTunes Category' },
+        'itunes.keywords': { group: 'details', label: 'Keywords' },
+        'itunes.explicit': { group: 'details', label: 'Explicit', badge: true },
+        'itunes.complete': { group: 'details', label: 'Series Complete', badge: true },
+        'itunes.owner': { group: 'details', label: 'Owner Contact' },
+        'copyright': { group: 'details', label: 'Copyright' },
+        'managingEditor': { group: 'details', label: 'Managing Editor' },
+        'webMaster': { group: 'details', label: 'Webmaster' },
+        'licence': { group: 'details', label: 'License' },
+        'image.title': { group: 'details', label: 'Image Title' },
+        'image.link': { group: 'details', label: 'Image Link' },
+        'image.width': { group: 'details', label: 'Image Width' },
+        'image.height': { group: 'details', label: 'Image Height' },
+        'image.description': { group: 'details', label: 'Image Description' },
+
+        'generator': { group: 'technical', label: 'Feed Generator' },
+        'docs': { group: 'technical', label: 'Specification Docs' },
+        'ttl': { group: 'technical', label: 'TTL (minutes)' },
+        'rating': { group: 'technical', label: 'PICS Rating' },
+        'itunes.block': { group: 'technical', label: 'iTunes Block', badge: true },
+        'itunes.new_feed_url': { group: 'technical', label: 'New Feed URL' },
+        'atom.id': { group: 'technical', label: 'Atom ID' },
+        'atom.title': { group: 'technical', label: 'Atom Title' },
+        'atom.summary': { group: 'technical', label: 'Atom Summary', html: true }
+    };
+
+    var ITEM_IMPORTANCE = {
+        'title': { group: 'essential', label: 'Episode Title' },
+        'pubdate': { group: 'essential', label: 'Release Date' },
+        'itunes.time': { group: 'essential', label: 'Duration' },
+        'enclosure.url': { group: 'essential', label: 'Media URL' },
+        'enclosure.type': { group: 'essential', label: 'Media Type' },
+        'enclosure.size': { group: 'essential', label: 'Media Size', bytes: true },
+        'link': { group: 'essential', label: 'Episode Link' },
+        'description': { group: 'essential', label: 'Show Notes', html: true },
+        'itunes.subtitle': { group: 'essential', label: 'Subtitle' },
+        'itunes.author': { group: 'essential', label: 'iTunes Author' },
+        'author': { group: 'essential', label: 'Author' },
+        'itunes.img': { group: 'essential', label: 'Episode Artwork', image: true },
+
+        'category': { group: 'details', label: 'Categories' },
+        'itunes.keywords': { group: 'details', label: 'Keywords' },
+        'itunes.explicit': { group: 'details', label: 'Explicit', badge: true },
+        'itunes.isCC': { group: 'details', label: 'Closed Captioned', badge: true },
+        'itunes.order': { group: 'details', label: 'Episode Order' },
+        'comments': { group: 'details', label: 'Comments URL' },
+        'licence': { group: 'details', label: 'License' },
+        'source': { group: 'details', label: 'Source' },
+        'source_url': { group: 'details', label: 'Source URL' },
+
+        'guid': { group: 'technical', label: 'GUID' },
+        'isPermaLink': { group: 'technical', label: 'GUID Is PermaLink', badge: true },
+        'id': { group: 'technical', label: 'Atom Entry ID' },
+        'itunes.block': { group: 'technical', label: 'iTunes Block', badge: true },
+        'trackback.about': { group: 'technical', label: 'Trackback About' },
+        'trackback.ping': { group: 'technical', label: 'Trackback Ping' },
+        'atom.id': { group: 'technical', label: 'Atom ID' },
+        'atom.title': { group: 'technical', label: 'Atom Title' },
+        'atom.summary': { group: 'technical', label: 'Atom Summary', html: true }
+    };
+
+    function flattenFeedFields(obj, rules) {
+        var grouped = { essential: [], details: [], technical: [] };
+        if (!obj) return grouped;
+
+        function pushField(path, val) {
+            if (val === undefined || val === null || val === '') return;
+            var meta = rules[path] || { group: 'technical', label: path };
+            grouped[meta.group].push({
+                key: path,
+                label: meta.label,
+                value: val,
+                meta: meta
+            });
+        }
+
+        $.each(obj, function (k, v) {
+            if (k === 'items') return;
+            if (typeof v === 'object' && v !== null) {
+                $.each(v, function (k2, v2) {
+                    if (typeof v2 !== 'object') {
+                        pushField(k + '.' + k2, v2);
+                    }
+                });
+            } else {
+                pushField(k, v);
+            }
+        });
+        return grouped;
+    }
+
+    function formatFieldCell(entry) {
+        var val = entry.value;
+        var meta = entry.meta;
+        var $cell = $('<td>');
+
+        if (meta.bytes) {
+            return $cell.text(formatBytes(val));
+        }
+        if (meta.badge) {
+            var strVal = String(val).toLowerCase();
+            var cls = (strVal === 'yes' || strVal === 'true') ? 'label-warning' : 'label-default';
+            return $cell.append($('<span>').addClass('label ' + cls).text(String(val)));
+        }
+        if (meta.html) {
+            return $cell.append($('<div>').addClass('feed-inspector-desc').html(String(val)));
+        }
+        if (meta.image) {
+            $cell.append(detectType(String(val)));
+            $cell.append('<br>');
+            $cell.append($('<img>').addClass('feed-inspector-thumb').attr('src', String(val)).attr('alt', entry.label));
+            return $cell;
+        }
+        var formatted = detectType(String(val));
+        if (String(val).length > 300) {
+            return $cell.append($('<div>').addClass('feed-inspector-desc').html(formatted));
+        }
+        return $cell.html(formatted);
+    }
+
+    function buildSectionPanel(title, panelClass, rows, emptyMsg) {
+        var $panel = $('<div>').addClass('panel ' + panelClass);
+        var $heading = $('<div>').addClass('panel-heading').append(
+            $('<h4>').addClass('panel-title').text(title + ' ').append(
+                $('<span>').addClass('badge').text(rows.length)
+            )
+        );
+        $panel.append($heading);
+
+        if (!rows.length) {
+            $panel.append($('<div>').addClass('panel-body text-muted').text(emptyMsg));
+            return $panel;
+        }
+
+        var $table = $('<table>').addClass('table table-striped table-bordered table-condensed feed-inspector-table');
+        var $tbody = $('<tbody>');
+        $.each(rows, function (_, entry) {
+            var $tr = $('<tr>');
+            $tr.append($('<th>').text(entry.label));
+            $tr.append(formatFieldCell(entry));
+            $tbody.append($tr);
+        });
+        $table.append($tbody);
+        $panel.append($('<div>').addClass('table-responsive').append($table));
+        return $panel;
+    }
+
+    function renderFeedInspector($container, feed, item, idPrefix) {
+        if (!$container || !$container.length) return;
+        $container.empty();
+
+        if (!feed) {
+            $container.append(
+                $('<div>').addClass('alert alert-info').html(
+                    '<strong>No podcast feed loaded yet.</strong> Choose a cached podcast on the Home tab to inspect its channel and episode metadata.'
+                )
+            );
+            return;
+        }
+
+        var chanGroups = flattenFeedFields(feed, CHANNEL_IMPORTANCE);
+        var itemGroups = flattenFeedFields(item, ITEM_IMPORTANCE);
+
+        var $nav = $('<ul>').addClass('nav nav-tabs feed-inspector-tabs').attr('role', 'tablist');
+        var $tabContent = $('<div>').addClass('tab-content');
+
+        $.each(IMPORTANCE_GROUPS, function (idx, grp) {
+            var tabId = idPrefix + grp.key;
+            var totalCount = chanGroups[grp.key].length + itemGroups[grp.key].length;
+
+            var $a = $('<a>')
+                .attr({ href: '#' + tabId, role: 'tab', 'data-toggle': 'tab' })
+                .text(grp.label + ' ')
+                .append($('<span>').addClass('label ' + grp.badgeClass).text(totalCount));
+            var $li = $('<li>').attr('role', 'presentation').append($a);
+            if (idx === 0) $li.addClass('active');
+            $nav.append($li);
+
+            var $pane = $('<div>')
+                .addClass('tab-pane fade' + (idx === 0 ? ' in active' : ''))
+                .attr({ id: tabId, role: 'tabpanel' });
+
+            $pane.append(
+                buildSectionPanel(
+                    'Podcast Channel',
+                    'panel-primary',
+                    chanGroups[grp.key],
+                    'No channel fields in this importance group.'
+                )
+            );
+            $pane.append(
+                buildSectionPanel(
+                    'Current Episode',
+                    'panel-info',
+                    itemGroups[grp.key],
+                    item
+                        ? 'No episode fields in this importance group.'
+                        : 'Select an episode in the Globe tab to inspect episode-level data.'
+                )
+            );
+            $tabContent.append($pane);
+        });
+
+        $container.append($nav).append($tabContent);
+    }
+
     $.feedRead = function (newopt) {
         var opt = {
             itunes: true, //podcast url
             manifest: 'podcasts/feeds.json',
             feed_target: '#files',
-            feed_list: '#RSS_feeds',
-            feed: '#feed',
+            feed_list: '#podcast',
+            feed: '#playlist',
             channel: '#chan_info',
             channel_ex: '#chan_extra',
             item: '#item_info',
-            item_ex: '#item_extra'
+            item_ex: '#item_extra',
+            extra: '#extra_content',
+            modal: '#feedInfoModal',
+            modal_body: '#feedModalBody'
         };
 
         $.extend(opt, newopt);
 
+        var currentFeed = null;
+        var currentItem = null;
+
         // common html
         var div_row = function (txt) { return '<div class="row"><div class="col-md-12 ">' + txt + '</div></div>'; };
-        var div_info = function (key,txt) {
-            return '<div class="row"><div class="col-md-3 " style="background-color:black; color: white;">' + key + '</div><div class="col-md-9 ">' + txt + '</div></div>';
-        };
         var rss_link = function (link, title) {
             if (!link) return title;
-            return '<a href="' + link.replace(/^http/, 'podcast') + '" target="_blank">' + title + '</a>';
+            return '<a href="' + link.replace(/^http/, 'podcast') + '" target="_blank" rel="noopener noreferrer">' + title + '</a>';
         };
-        var rss_img = function (img) { return '<img src="' + img + '" style="width:380px; height: auto;"/>'; };
-        var chan_info_all = function (chan) {
-            $.each(chan, function (k, v) {
-                if (k != 'items') {
-                    if (typeof v != 'object') {
-                        $(opt.channel_ex).append(div_info(k, detectType(v) ));
-                    } else if (typeof v == 'object') {
-                        $(opt.channel_ex).append(div_row('<strong>' + k + '</strong>'));
-                        $.each(v, function (k2, v2) {  $(opt.channel_ex).append(div_info(k2, detectType(v2) )); });    
-                    }
-                }
-            });
-        };
+        var rss_img = function (img) { return '<img src="' + img + '" class="img-responsive center-block" alt="Podcast artwork"/>'; };
 
-        var item_info_all = function (item) {
-            $.each(item, function (k, v) {
-                if (typeof v != 'object') {
-                    $(opt.item_ex).append(div_info(k, detectType(v) ));
-                } else if (typeof v == 'object') {
-                    $(opt.item_ex).append(div_row('<strong>' + k + '</strong>'));
-                    $.each(v, function (k2, v2) { $(opt.item_ex).append(div_info(k2, detectType(v2) )); });    
-                }            
-            });
+        var refreshInspector = function () {
+            renderFeedInspector($(opt.extra), currentFeed, currentItem, 'tab-');
+            renderFeedInspector($(opt.modal_body), currentFeed, currentItem, 'modal-');
+            var modalTitle = 'Feed Data';
+            if (currentFeed && currentFeed.title) {
+                modalTitle = currentFeed.title + (currentItem && currentItem.title ? ' — ' + currentItem.title : '');
+            }
+            $('#feedInfoModalLabel').html('<span class="glyphicon glyphicon-info-sign"></span> ').append(document.createTextNode(modalTitle));
         };
 
         var seenLinks = {};
@@ -469,17 +703,24 @@ function detectType(str) {
             loadLinkTags();
         }
 
+        refreshInspector();
+
         $(opt.feed_list).on('click', 'li > ul > li > a', function (e) {
             e.preventDefault();
-            var url = $(this).attr('href');
+            var $clicked = $(this);
+            $(opt.feed_list + ' li > ul > li').removeClass('active');
+            $clicked.parent('li').addClass('active');
+
+            var url = $clicked.attr('href');
             var feed = feedMe(url);
+            currentFeed = feed;
+            currentItem = null;
 
             $(opt.feed).empty();
             $(opt.channel).empty();
-            $(opt.channel_ex).empty();
             $(opt.item).empty();
-            $(opt.item_ex).empty();
-            chan_info_all(feed);
+            $('#searchEpisode').val('');
+
             //description
             var desc;
             if (opt.itunes && feed.itunes && typeof feed.itunes['desc'] == 'string') {
@@ -501,42 +742,94 @@ function detectType(str) {
 
             //title
             $(opt.channel).append(div_row(rss_link(feed.link, '<h4>' + (feed.title || 'Podcast Feed') + '</h4>')));
-            if (typeof desc == 'string') { $(opt.channel).append(div_row(desc)); }
             if (typeof img == 'string') { $(opt.channel).append(div_row(img)); }
-            if (typeof pubdate == 'string') { $(opt.channel).append(div_row(pubdate)); }
-            $('.nav-tabs a[href="#chan"]').tab('show');
+            if (typeof pubdate == 'string') { $(opt.channel).append(div_row('<p class="text-muted"><small>Updated: ' + pubdate + '</small></p>')); }
+            if (typeof desc == 'string') { $(opt.channel).append(div_row(desc)); }
+
+            var episodeItems = [];
+            var episodeCount = 0;
             if (feed.items) {
                 $.each(feed.items, function (n, i) {
-                    var $itemLink = $('<a>').attr({ id: 'fItem' + n, href: '#', media: '' }).text(i.title || 'Untitled Episode');
-                    $(opt.feed).prepend($('<li>').append($itemLink));
-
-                    $itemLink.click(function (e) {
-                        e.preventDefault();
-                        $(opt.item).empty();
-                        $(opt.item_ex).empty();
-                        item_info_all(i);
-                        $(opt.item).append(div_row('<h3>' + (i.title || 'Untitled Episode') + '</h3>'));
-                        if (i.pubdate) {
-                            $(opt.item).append(div_row('Release Date: ' + detectType(i.pubdate)));
-                        }
-                        var media = isAudioOrVideo(i.enclosure);
-                        if (media.isMedia && i.enclosure && i.enclosure['url']) {
-                            var tag = media.type === 'video'
-                                ? '<video controls width="100%"><source src="' + i.enclosure['url'] + '" type="' + i.enclosure['type'] + '"></video>'
-                                : '<audio controls><source src="' + i.enclosure['url'] + '" type="' + i.enclosure['type'] + '"></audio>';
-                            $(opt.item).append(div_row(tag));
-                        } else if (i.enclosure && i.enclosure['url']) {
-                            $(opt.item).append(div_row(detectType(i.enclosure['url'])));
-                        }
-                        if (i.link) {
-                            $(opt.item).append(div_row(detectType(i.link)));
-                        }
-                        if (i.description) {
-                            $(opt.item).append(div_row('<p>' + i.description + '</p>'));
-                        }
-                    });
+                    var $itemLink = $('<a>')
+                        .attr({ id: 'fItem' + n, href: '#', media: '' })
+                        .data('itemIndex', n)
+                        .text(i.title || 'Untitled Episode');
+                    episodeItems.unshift($('<li>').append($itemLink)[0]);
+                    episodeCount += 1;
                 });
+                $(opt.feed).append(episodeItems);
             }
+
+            $(opt.item).append(
+                $('<div>').addClass('panel panel-default').append(
+                    $('<div>').addClass('panel-body').append(
+                        $('<h4>').text(feed.title || 'Loaded Podcast'),
+                        $('<p>').text(episodeCount + ' episodes loaded in the Globe tab sidebar. Select an episode to view show notes and play media.'),
+                        $('<button type="button" class="btn btn-info btn-sm open-feed-modal">')
+                            .html('<span class="glyphicon glyphicon-info-sign"></span> View Feed Data Pop-up')
+                    )
+                )
+            );
+
+            refreshInspector();
+            $('.nav-tabs a[href="#chan"]').tab('show');
+        });
+
+        $(opt.feed).on('click', 'a', function (e) {
+            e.preventDefault();
+            if (!currentFeed || !currentFeed.items) return;
+
+            var $link = $(this);
+            var idx = $link.data('itemIndex');
+            var i = currentFeed.items[idx];
+            if (!i) return;
+
+            $(opt.feed + ' li').removeClass('active');
+            $link.parent('li').addClass('active');
+
+            currentItem = i;
+            $(opt.item).empty();
+
+            var $panel = $('<div>').addClass('panel panel-default');
+            var $heading = $('<div>').addClass('panel-heading clearfix').append(
+                $('<h3>').addClass('panel-title pull-left').css('padding-top', '4px').text(i.title || 'Untitled Episode'),
+                $('<button type="button" class="btn btn-xs btn-info pull-right open-feed-modal">')
+                    .html('<span class="glyphicon glyphicon-info-sign"></span> Feed Data')
+            );
+            var $body = $('<div>').addClass('panel-body');
+
+            var metaParts = [];
+            if (i.pubdate) metaParts.push('Release Date: ' + detectType(i.pubdate));
+            if (i.itunes && i.itunes.time) metaParts.push('Duration: ' + $('<span>').text(i.itunes.time).html());
+            if (metaParts.length) {
+                $body.append(div_row('<p class="text-muted">' + metaParts.join(' &middot; ') + '</p>'));
+            }
+
+            var media = isAudioOrVideo(i.enclosure);
+            if (media.isMedia && i.enclosure && i.enclosure['url']) {
+                var tag = media.type === 'video'
+                    ? '<video controls width="100%"><source src="' + i.enclosure['url'] + '" type="' + i.enclosure['type'] + '"></video>'
+                    : '<audio controls><source src="' + i.enclosure['url'] + '" type="' + i.enclosure['type'] + '"></audio>';
+                $body.append(div_row(tag));
+            } else if (i.enclosure && i.enclosure['url']) {
+                $body.append(div_row(detectType(i.enclosure['url'])));
+            }
+            if (i.link) {
+                $body.append(div_row('<p>' + detectType(i.link) + '</p>'));
+            }
+            if (i.description) {
+                $body.append(div_row('<div>' + i.description + '</div>'));
+            }
+
+            $panel.append($heading).append($body);
+            $(opt.item).append($panel);
+            refreshInspector();
+        });
+
+        $(document).on('click', '.open-feed-modal', function (e) {
+            e.preventDefault();
+            refreshInspector();
+            $(opt.modal).modal('show');
         });
 
         $('#reorder_playlist').click(function (e) {
@@ -548,6 +841,13 @@ function detectType(str) {
         $('#searchPodcast').on('input keyup', function() {
             var term = $(this).val().toLowerCase();
             $(opt.feed_list + ' ul > li').filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(term) > -1);
+            });
+        });
+
+        $('#searchEpisode').on('input keyup', function() {
+            var term = $(this).val().toLowerCase();
+            $(opt.feed + ' > li').filter(function() {
                 $(this).toggle($(this).text().toLowerCase().indexOf(term) > -1);
             });
         });
