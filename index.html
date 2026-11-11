@@ -124,15 +124,16 @@
                 </div>
             </div>
 
-            <!-- Globe Tab: 40% Episodes Sidebar + 60% Current Episode -->
+            <!-- Globe Tab: 40% Episode List on Left + 60% Current Episode on Right -->
             <div id="chan" class="tab-pane fade">
-                <div class="row chan-layout">
+                <div class="chan-layout">
                     <div class="chan-episodes-col">
                         <div class="panel panel-default">
                             <div class="panel-heading clearfix">
                                 <span class="glyphicon glyphicon-globe"></span> <strong>Episodes</strong>
+                                <span id="chan_info" class="text-muted small" style="margin-left: 6px;"></span>
                                 <div class="pull-right">
-                                    <button type="button" class="btn btn-xs btn-default open-feed-modal" data-inspector-tab="channel" title="Channel &amp; Episode Metadata">
+                                    <button type="button" class="btn btn-xs btn-default open-feed-modal" data-inspector-tab="channel" title="Channel &amp; Episode Data">
                                         <span class="glyphicon glyphicon-info-sign"></span>
                                     </button>
                                     <a href="#" id="reorder_playlist" class="btn btn-xs btn-default" title="Reverse Episode Order">
@@ -141,10 +142,6 @@
                                 </div>
                             </div>
                             <div class="panel-body">
-                                <div id="chan_info">
-                                    <p class="text-muted">Select a podcast on the Home tab to load its episodes.</p>
-                                </div>
-                                <hr />
                                 <div class="input-group input-group-sm" style="margin-bottom: 10px;">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
                                     <input type="text" id="searchEpisode" class="form-control" placeholder="Filter Episodes" />

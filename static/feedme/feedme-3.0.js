@@ -672,11 +672,6 @@ function detectType(str) {
 
         // common html
         var div_row = function (txt) { return '<div class="row"><div class="col-md-12 ">' + txt + '</div></div>'; };
-        var rss_link = function (link, title) {
-            if (!link) return title;
-            return '<a href="' + link.replace(/^http/, 'podcast') + '" target="_blank" rel="noopener noreferrer">' + title + '</a>';
-        };
-        var rss_img = function (img) { return '<img src="' + img + '" class="img-responsive center-block" alt="Podcast artwork"/>'; };
 
         var refreshInspector = function (activeTab) {
             renderFeedInspector($(opt.modal_body), currentFeed, currentItem, 'modal-');
@@ -727,81 +722,9 @@ function detectType(str) {
 
         refreshInspector();
 
-        $(opt.feed_list).on('click', 'li > ul > li > a', function (e) {
-            e.preventDefault();
-            var $clicked = $(this);
-            $(opt.feed_list + ' li > ul > li').removeClass('active');
-            $clicked.parent('li').addClass('active');
+        var renderEpisode = function ($link) {
+            if (!currentFeed || !currentFeed.items || !$link || !$link.length) return;
 
-            var url = $clicked.attr('href');
-            var feed = feedMe(url);
-            currentFeed = feed;
-            currentItem = null;
-
-            $(opt.feed).empty();
-            $(opt.channel).empty();
-            $(opt.item).empty();
-            $('#searchEpisode').val('');
-
-            //description
-            var desc;
-            if (opt.itunes && feed.itunes && typeof feed.itunes['desc'] == 'string') {
-                desc = '<p>' + feed.itunes['desc'] + '</p>';
-            } else if (typeof feed.description == 'string') {
-                desc = '<p>' + feed.description + '</p>';
-            }
-
-            //image
-            var img;
-            if (opt.itunes && feed.itunes && typeof feed.itunes['img'] == 'string') {
-                img = rss_img(feed.itunes['img']);
-            } else if (typeof feed.image != 'undefined' && feed.image['url']) {
-                img = rss_img(feed.image['url']);
-            }
-
-            var pubdate;
-            if (typeof feed.pubDate == 'string') { pubdate = formatDate(feed.pubDate); }
-
-            //title
-            $(opt.channel).append(div_row(rss_link(feed.link, '<h4>' + (feed.title || 'Podcast Feed') + '</h4>')));
-            if (typeof img == 'string') { $(opt.channel).append(div_row(img)); }
-            if (typeof pubdate == 'string') { $(opt.channel).append(div_row('<p class="text-muted"><small>Updated: ' + pubdate + '</small></p>')); }
-            if (typeof desc == 'string') { $(opt.channel).append(div_row(desc)); }
-
-            var episodeItems = [];
-            var episodeCount = 0;
-            if (feed.items) {
-                $.each(feed.items, function (n, i) {
-                    var $itemLink = $('<a>')
-                        .attr({ id: 'fItem' + n, href: '#', media: '' })
-                        .data('itemIndex', n)
-                        .text(i.title || 'Untitled Episode');
-                    episodeItems.unshift($('<li>').append($itemLink)[0]);
-                    episodeCount += 1;
-                });
-                $(opt.feed).append(episodeItems);
-            }
-
-            $(opt.item).append(
-                $('<div>').addClass('panel panel-default').append(
-                    $('<div>').addClass('panel-body').append(
-                        $('<h4>').text(feed.title || 'Podcast'),
-                        $('<p>').text(episodeCount + ' episodes loaded. Select an episode from the sidebar to view show notes and play media.'),
-                        $('<button type="button" class="btn btn-info btn-sm open-feed-modal" data-inspector-tab="channel">')
-                            .html('<span class="glyphicon glyphicon-info-sign"></span> Feed Data')
-                    )
-                )
-            );
-
-            refreshInspector();
-            $('.nav-tabs a[href="#chan"]').tab('show');
-        });
-
-        $(opt.feed).on('click', 'a', function (e) {
-            e.preventDefault();
-            if (!currentFeed || !currentFeed.items) return;
-
-            var $link = $(this);
             var idx = $link.data('itemIndex');
             var i = currentFeed.items[idx];
             if (!i) return;
@@ -846,6 +769,57 @@ function detectType(str) {
             $panel.append($heading).append($body);
             $(opt.item).append($panel);
             refreshInspector();
+        };
+
+        $(opt.feed_list).on('click', 'li > ul > li > a', function (e) {
+            e.preventDefault();
+            var $clicked = $(this);
+            $(opt.feed_list + ' li > ul > li').removeClass('active');
+            $clicked.parent('li').addClass('active');
+
+            var url = $clicked.attr('href');
+            var feed = feedMe(url);
+            currentFeed = feed;
+            currentItem = null;
+
+            $(opt.feed).empty();
+            $(opt.channel).empty();
+            $(opt.item).empty();
+            $('#searchEpisode').val('');
+
+            var episodeItems = [];
+            var episodeCount = 0;
+            if (feed.items) {
+                $.each(feed.items, function (n, i) {
+                    var $itemLink = $('<a>')
+                        .attr({ id: 'fItem' + n, href: '#', media: '' })
+                        .data('itemIndex', n)
+                        .text(i.title || 'Untitled Episode');
+                    episodeItems.push($('<li>').append($itemLink)[0]);
+                    episodeCount += 1;
+                });
+                $(opt.feed).append(episodeItems);
+            }
+
+            // Keep left sidebar focused on the episode list with a compact channel label
+            $(opt.channel).text((feed.title || 'Podcast') + ' (' + episodeCount + ')');
+
+            var $firstEpisode = $(opt.feed + ' li a').first();
+            if ($firstEpisode.length) {
+                renderEpisode($firstEpisode);
+            } else {
+                $(opt.item).append(
+                    $('<div>').addClass('alert alert-info').text('No episodes found in this feed.')
+                );
+                refreshInspector();
+            }
+
+            $('.nav-tabs a[href="#chan"]').tab('show');
+        });
+
+        $(opt.feed).on('click', 'a', function (e) {
+            e.preventDefault();
+            renderEpisode($(this));
         });
 
         $(document).on('click', '.open-feed-modal', function (e) {
