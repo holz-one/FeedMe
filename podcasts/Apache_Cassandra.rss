@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:anchor="https://anchor.fm/xmlns" xmlns:podcast="https://podcastindex.org/namespace/1.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:psc="http://podlove.org/simple-chapters">
+	<channel>
+		<title><![CDATA[The Apache Cassandra® Corner]]></title>
+		<description><![CDATA[A community-driven podcast for The Apache Cassandra® NoSQL database community. We talk about all things Cassandra, from use cases to projects and the people who make them happen. This show is hosted by Aaron Ploetz, a Cassandra MVP and long-time member of the The Apache Cassandra® community.]]></description>
+		<link>https://cassandra.apache.org/_/index.html</link>
+		<generator>Anchor Podcasts</generator>
+		<lastBuildDate>Fri, 06 Nov 2026 11:37:38 GMT</lastBuildDate>
+		<atom:link href="https://anchor.fm/s/99c5e268/podcast/rss" rel="self" type="application/rss+xml"/>
+		<author><![CDATA[The Apache Cassandra® Corner]]></author>
+		<copyright><![CDATA[The Apache Cassandra® Corner]]></copyright>
+		<language><![CDATA[en]]></language>
+		<atom:link rel="hub" href="https://pubsubhubbub.appspot.com/"/>
+		<itunes:author>The Apache Cassandra® Corner</itunes:author>
+		<itunes:summary>A community-driven podcast for The Apache Cassandra® NoSQL database community. We talk about all things Cassandra, from use cases to projects and the people who make them happen. This show is hosted by Aaron Ploetz, a Cassandra MVP and long-time member of the The Apache Cassandra® community.</itunes:summary>
+		<itunes:type>episodic</itunes:type>
+		<itunes:owner>
+			<itunes:name>The Apache Cassandra® Corner</itunes:name>
+			<itunes:email>aaron.ploetz@datastax.com</itunes:email>
+		</itunes:owner>
+		<itunes:explicit>false</itunes:explicit>
+		<itunes:category text="Technology"/>
+		<itunes:image href="https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded/25698826/25698826-1656347369359-006a5f644496b.jpg"/>
+		<item>
+			<title><![CDATA[s3e2 - Otavio Santana (author)]]></title>
+			<description><![CDATA[<p>In this episode, I welcome Otavio Santana (author and Java Champion) back to the show! Listen as Otavio and I talk about his two latest books &quot;Mastering the Java Virtual Machine&quot; and &quot;Java Persistence with NoSQL.&quot; We discuss a little about Apache Cassandra® with Java, garbage collection, and the perils of writing two books in a single year.</p>
+]]></description>
+			<link>https://podcasters.spotify.com/pod/show/cassandra-corner/episodes/s3e2---Otavio-Santana-author-e2i57j9</link>
+			<guid isPermaLink="false">a0f5d55e-7c5a-47b9-b0ed-1f3287331886</guid>
+			<dc:creator><![CDATA[The Apache Cassandra® Corner]]></dc:creator>
+			<pubDate>Fri, 12 Apr 2024 22:40:30 GMT</pubDate>
+			<enclosure url="https://anchor.fm/s/99c5e268/podcast/play/85154857/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2024-3-8%2F373664117-44100-2-baedb5eba1452.mp3" length="31690082" type="audio/mpeg"/>
+			<itunes:summary>&lt;p&gt;In this episode, I welcome Otavio Santana (author and Java Champion) back to the show! Listen as Otavio and I talk about his two latest books &amp;quot;Mastering the Java Virtual Machine&amp;quot; and &amp;quot;Java Persistence with NoSQL.&amp;quot; We discuss a little about Apache Cassandra® with Java, garbage collection, and the perils of writing two books in a single year.&lt;/p&gt;
+</itunes:summary>
+			<itunes:explicit>false</itunes:explicit>
+			<itunes:duration>00:33:00</itunes:duration>
+			<itunes:image href="https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded/25698826/25698826-1656347369359-006a5f644496b.jpg"/>
+			<itunes:season>3</itunes:season>
+			<itunes:episode>2</itunes:episode>
+			<itunes:episodeType>full</itunes:episodeType>
+		</item>
+		<item>
+			<title><![CDATA[s3e1 - Jon Haddad (RustyRazorblade Consulting)]]></title>
+			<description><![CDATA[<p>In this first episode after a year-end break, I had a chance to talk with longtime community member Jon Haddad. Jon has a storied career of working on some of the largest Cassandra clusters in the world. Listen in, as we talk about some of the clusters that he&#39;s worked on, the lessons learned, and a little about his new gig, RustyRazorblade consulting.</p>
+]]></description>
+			<link>https://podcasters.spotify.com/pod/show/cassandra-corner/episodes/s3e1---Jon-Haddad-RustyRazorblade-Consulting-e2g9npu</link>
+			<guid isPermaLink="false">3f70766c-cc6f-48ab-ba2f-5d89208128c1</guid>
+			<dc:creator><![CDATA[The Apache Cassandra® Corner]]></dc:creator>
+			<pubDate>Thu, 29 Feb 2024 13:29:00 GMT</pubDate>
+			<enclosure url="https://anchor.fm/s/99c5e268/podcast/play/83205374/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2024-1-26%2F368814504-44100-2-994d100da441f.mp3" length="25822353" type="audio/mpeg"/>
+			<itunes:summary>&lt;p&gt;In this first episode after a year-end break, I had a chance to talk with longtime community member Jon Haddad. Jon has a storied career of working on some of the largest Cassandra clusters in the world. Listen in, as we talk about some of the clusters that he&amp;#39;s worked on, the lessons learned, and a little about his new gig, RustyRazorblade consulting.&lt;/p&gt;
+</itunes:summary>
+			<itunes:explicit>false</itunes:explicit>
+			<itunes:duration>00:26:53</itunes:duration>
+			<itunes:image href="https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded/25698826/25698826-1656347369359-006a5f644496b.jpg"/>
+			<itunes:season>3</itunes:season>
+			<itunes:episode>1</itunes:episode>
+			<itunes:episodeType>full</itunes:episodeType>
+		</item>
+		<item>
+			<title><![CDATA[s2e12 - Jonathan Ellis (DataStax founder)]]></title>
+			<description><![CDATA[<p>For this episode, I had a great conversation with Jonathan Ellis (DataStax founder and former Apache Cassandra® PMC Chair). Listen in to hear us talk a little about the formation of DataStax, the early days of the Cassandra project, and Jonathan&#39;s trials and tribulations while building Vector Search for Cassandra.</p>
+]]></description>
+			<link>https://podcasters.spotify.com/pod/show/cassandra-corner/episodes/s2e12---Jonathan-Ellis-DataStax-founder-e2cpsji</link>
+			<guid isPermaLink="false">2dc7e20b-3bc5-4c9c-aa60-7db0ff66bde6</guid>
+			<dc:creator><![CDATA[The Apache Cassandra® Corner]]></dc:creator>
+			<pubDate>Mon, 04 Dec 2023 16:51:57 GMT</pubDate>
+			<enclosure url="https://anchor.fm/s/99c5e268/podcast/play/79540274/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2023-11-4%2F358437004-44100-2-cdc91bb66b569.mp3" length="24685086" type="audio/mpeg"/>
+			<itunes:summary>&lt;p&gt;For this episode, I had a great conversation with Jonathan Ellis (DataStax founder and former Apache Cassandra® PMC Chair). Listen in to hear us talk a little about the formation of DataStax, the early days of the Cassandra project, and Jonathan&amp;#39;s trials and tribulations while building Vector Search for Cassandra.&lt;/p&gt;
+</itunes:summary>
+			<itunes:explicit>false</itunes:explicit>
+			<itunes:duration>00:25:42</itunes:duration>
+			<itunes:image href="https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded/25698826/25698826-1656347369359-006a5f644496b.jpg"/>
+			<itunes:season>2</itunes:season>
+			<itunes:episode>12</itunes:episode>
+			<itunes:episodeType>full</itunes:episodeType>
+		</item>
+		<item>
+			<title><![CDATA[s2e11 - Sarma Pydipally interviews Aaron]]></title>
+			<description><![CDATA[<p>We tried something a little different in this episode, as Sarma Pydipally comes on to the show to interview Aaron! Listen in as we discuss a little about Aaron&#39;s career path, working with early versions of Apache Cassandra®, and his upcoming talk at the Cassandra Summit (in December) about leveraging Vector Search in E-commerce!</p>
+]]></description>
+			<link>https://podcasters.spotify.com/pod/show/cassandra-corner/episodes/s2e11---Sarma-Pydipally-interviews-Aaron-e2al5lg</link>
+			<guid isPermaLink="false">7584ce95-72e4-4411-bc03-5c333c64c50c</guid>
+			<dc:creator><![CDATA[The Apache Cassandra® Corner]]></dc:creator>
+			<pubDate>Thu, 19 Oct 2023 15:41:00 GMT</pubDate>
+			<enclosure url="https://anchor.fm/s/99c5e268/podcast/play/77288560/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2023-9-16%2F351376132-44100-2-deaad66be501a.mp3" length="25955682" type="audio/mpeg"/>
+			<itunes:summary>&lt;p&gt;We tried something a little different in this episode, as Sarma Pydipally comes on to the show to interview Aaron! Listen in as we discuss a little about Aaron&amp;#39;s career path, working with early versions of Apache Cassandra®, and his upcoming talk at the Cassandra Summit (in December) about leveraging Vector Search in E-commerce!&lt;/p&gt;
+</itunes:summary>
+			<itunes:explicit>false</itunes:explicit>
+			<itunes:duration>00:27:02</itunes:duration>
+			<itunes:image href="https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded/25698826/25698826-1656347369359-006a5f644496b.jpg"/>
+			<itunes:season>2</itunes:season>
+			<itunes:episode>11</itunes:episode>
+			<itunes:episodeType>full</itunes:episodeType>
+		</item>
+		<item>
+			<title><![CDATA[s2e10 - Dr. Charna Parkey (Data Scientist)]]></title>
+			<description><![CDATA[<p>Want to learn more about Apache Cassandra® as an AI datastore? Listen in as I talk with Dr. Charna Parkey, while we discuss her career journey from engineer to data scientist, the evolution of Kaskada, some implications of AI, and AI workloads that benefit from Cassandra.</p>
+]]></description>
+			<link>https://podcasters.spotify.com/pod/show/cassandra-corner/episodes/s2e10---Dr--Charna-Parkey-Data-Scientist-e29gp0g</link>
+			<guid isPermaLink="false">15c4dc10-751e-46a7-a53b-94e65772b035</guid>
+			<dc:creator><![CDATA[The Apache Cassandra® Corner]]></dc:creator>
+			<pubDate>Thu, 21 Sep 2023 23:38:00 GMT</pubDate>
+			<enclosure url="https://anchor.fm/s/99c5e268/podcast/play/76095952/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2023-8-19%2F347652954-44100-2-e9d3d8143ead9.mp3" length="22454856" type="audio/mpeg"/>
+			<itunes:summary>&lt;p&gt;Want to learn more about Apache Cassandra® as an AI datastore? Listen in as I talk with Dr. Charna Parkey, while we discuss her career journey from engineer to data scientist, the evolution of Kaskada, some implications of AI, and AI workloads that benefit from Cassandra.&lt;/p&gt;
+</itunes:summary>
+			<itunes:explicit>false</itunes:explicit>
+			<itunes:duration>00:23:23</itunes:duration>
+			<itunes:image href="https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded/25698826/25698826-1656347369359-006a5f644496b.jpg"/>
+			<itunes:season>2</itunes:season>
+			<itunes:episode>10</itunes:episode>
+			<itunes:episodeType>full</itunes:episodeType>
+		</item>
+		<item>
+			<title><![CDATA[s2e9 - Aaron Morton (JSON API)]]></title>
+			<description><![CDATA[<p>This week, I sat down with Aaron Morton to talk about his upcoming talk at the Cassandra Summit in December. We also discussed Aaron&#39;s work with the Mongoose project, and improving the Cassandra developer experience with a JSON API that includes Vector Search!</p>
+]]></description>
+			<link>https://podcasters.spotify.com/pod/show/cassandra-corner/episodes/s2e9---Aaron-Morton-JSON-API-e292qua</link>
+			<guid isPermaLink="false">a1703258-0e31-457a-a45f-f3d55ae946b7</guid>
+			<dc:creator><![CDATA[The Apache Cassandra® Corner]]></dc:creator>
+			<pubDate>Mon, 11 Sep 2023 14:09:00 GMT</pubDate>
+			<enclosure url="https://anchor.fm/s/99c5e268/podcast/play/75639178/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2023-8-8%2F346226744-44100-2-679da61125027.mp3" length="20920110" type="audio/mpeg"/>
+			<itunes:summary>&lt;p&gt;This week, I sat down with Aaron Morton to talk about his upcoming talk at the Cassandra Summit in December. We also discussed Aaron&amp;#39;s work with the Mongoose project, and improving the Cassandra developer experience with a JSON API that includes Vector Search!&lt;/p&gt;
+</itunes:summary>
+			<itunes:explicit>false</itunes:explicit>
+			<itunes:duration>00:21:47</itunes:duration>
+			<itunes:image href="https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded/25698826/25698826-1656347369359-006a5f644496b.jpg"/>
+			<itunes:season>2</itunes:season>
+			<itunes:episode>9</itunes:episode>
+			<itunes:episodeType>full</itunes:episodeType>
+		</item>
+		<item>
+			<title><![CDATA[s2e8 - Otavio Santana (author)]]></title>
+			<description><![CDATA[<p>For this episode, I caught up with Otavio Santana, one of our guests from the first season. Otavio and I discussed his new book &quot;Persistence Best Practices for Java Applications&quot; which was just released on Aug 25th. Listen in to hear Otavio and I discuss how Apache Cassandra® fits into the landscape of Java application persistence, the role that cloud native tech plays, as well as practices for building good DTOs in Java.</p>
+]]></description>
+			<link>https://podcasters.spotify.com/pod/show/cassandra-corner/episodes/s2e8---Otavio-Santana-author-e28havg</link>
+			<guid isPermaLink="false">d00fdeec-ca61-4d10-b5af-6aba0ed263ea</guid>
+			<dc:creator><![CDATA[The Apache Cassandra® Corner]]></dc:creator>
+			<pubDate>Mon, 28 Aug 2023 15:38:00 GMT</pubDate>
+			<enclosure url="https://anchor.fm/s/99c5e268/podcast/play/75065776/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2023-7-31%2F345205585-44100-2-913cfb4346ea8.mp3" length="18623006" type="audio/mpeg"/>
+			<itunes:summary>&lt;p&gt;For this episode, I caught up with Otavio Santana, one of our guests from the first season. Otavio and I discussed his new book &amp;quot;Persistence Best Practices for Java Applications&amp;quot; which was just released on Aug 25th. Listen in to hear Otavio and I discuss how Apache Cassandra® fits into the landscape of Java application persistence, the role that cloud native tech plays, as well as practices for building good DTOs in Java.&lt;/p&gt;
+</itunes:summary>
+			<itunes:explicit>false</itunes:explicit>
+			<itunes:duration>00:19:23</itunes:duration>
+			<itunes:image href="https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded/25698826/25698826-1656347369359-006a5f644496b.jpg"/>
+			<itunes:season>2</itunes:season>
+			<itunes:episode>8</itunes:episode>
+			<itunes:episodeType>full</itunes:episodeType>
+		</item>
+		<item>
+			<title><![CDATA[s2e7 - German Eichberger and Theo van Kraay (Microsoft)]]></title>
+			<description><![CDATA[<p>In this episode I had a great discussion with German Eichberger and Theo van Kraay of Microsoft. We talked about the Azure Managed Instance for Apache CassandraⓇ service at Microsoft, Java at Microsoft, and a little history about the Azure Cosmos DB for Apache Cassandra API. If you want to hear about migrating between clusters on the Azure cloud, then this is the episode for you!</p>
+]]></description>
+			<link>https://podcasters.spotify.com/pod/show/cassandra-corner/episodes/s2e7---German-Eichberger-and-Theo-van-Kraay-Microsoft-e26ks57</link>
+			<guid isPermaLink="false">4ddebe20-8ae7-47b8-a314-8bc4799dc664</guid>
+			<dc:creator><![CDATA[The Apache Cassandra® Corner]]></dc:creator>
+			<pubDate>Mon, 10 Jul 2023 13:00:00 GMT</pubDate>
+			<enclosure url="https://anchor.fm/s/99c5e268/podcast/play/73084519/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fproduction%2Fexports%2F99c5e268%2F73084519%2F29796d97241721d35bcccec52d2bfe45.m4a" length="19515716" type="audio/x-m4a"/>
+			<itunes:summary>&lt;p&gt;In this episode I had a great discussion with German Eichberger and Theo van Kraay of Microsoft. We talked about the Azure Managed Instance for Apache CassandraⓇ service at Microsoft, Java at Microsoft, and a little history about the Azure Cosmos DB for Apache Cassandra API. If you want to hear about migrating between clusters on the Azure cloud, then this is the episode for you!&lt;/p&gt;
+</itunes:summary>
+			<itunes:explicit>false</itunes:explicit>
+			<itunes:duration>00:20:06</itunes:duration>
+			<itunes:image href="https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded/25698826/25698826-1656347369359-006a5f644496b.jpg"/>
+			<itunes:season>2</itunes:season>
+			<itunes:episode>7</itunes:episode>
+			<itunes:episodeType>full</itunes:episodeType>
+		</item>
+		<item>
+			<title><![CDATA[s2e6 - Mary Grygleski (DataStax)]]></title>
+			<description><![CDATA[<p>For today&#39;s episode, I sat down with Mary Grygleski of DataStax. Mary is a Developer Advocate on the Astra Streaming team, evangelizing for and helping folks with Apache Pulsar®. She has a long history as both an advocate and an engineer in tech, organizes the Chicago Java Users&#39; Group (CJUG), and has been recognized as a Java Champion. Listen in and hear how we discussed Java, Apache Cassandra®, Pulsar, and Mary&#39;s talk for the upcoming Cassandra Summit.</p>
+]]></description>
+			<link>https://podcasters.spotify.com/pod/show/cassandra-corner/episodes/s2e6---Mary-Grygleski-DataStax-e25o046</link>
+			<guid isPermaLink="false">76dcfd37-bfc8-475b-a08a-ebd2b02ae7bb</guid>
+			<dc:creator><![CDATA[The Apache Cassandra® Corner]]></dc:creator>
+			<pubDate>Sat, 17 Jun 2023 20:33:00 GMT</pubDate>
+			<enclosure url="https://anchor.fm/s/99c5e268/podcast/play/72138310/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2023-7-31%2F345203669-44100-2-e32e46ad39797.mp3" length="20471221" type="audio/mpeg"/>
+			<itunes:summary>&lt;p&gt;For today&amp;#39;s episode, I sat down with Mary Grygleski of DataStax. Mary is a Developer Advocate on the Astra Streaming team, evangelizing for and helping folks with Apache Pulsar®. She has a long history as both an advocate and an engineer in tech, organizes the Chicago Java Users&amp;#39; Group (CJUG), and has been recognized as a Java Champion. Listen in and hear how we discussed Java, Apache Cassandra®, Pulsar, and Mary&amp;#39;s talk for the upcoming Cassandra Summit.&lt;/p&gt;
+</itunes:summary>
+			<itunes:explicit>false</itunes:explicit>
+			<itunes:duration>00:21:19</itunes:duration>
+			<itunes:image href="https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded/25698826/25698826-1656347369359-006a5f644496b.jpg"/>
+			<itunes:season>2</itunes:season>
+			<itunes:episode>6</itunes:episode>
+			<itunes:episodeType>full</itunes:episodeType>
+		</item>
+		<item>
+			<title><![CDATA[s2e5 - Rahul Singh (Anant)]]></title>
+			<description><![CDATA[<p>In this episode, I caught up with Rahul Singh of Anant Corporation. We had a great discussion about how he started Anant, as well as some of the challenges of working with Cassandra (and other &quot;big data&quot; tech) in the C#/.Net world. Additionally, we go on to discuss how Anant&#39;s &quot;Cassandra Lunches&quot; (on YouTube) came about, as well as ways to help newer folks learn the Cassandra ecosystem.</p>
+]]></description>
+			<link>https://podcasters.spotify.com/pod/show/cassandra-corner/episodes/s2e5---Rahul-Singh-Anant-e22a8mo</link>
+			<guid isPermaLink="false">e009f5c3-a529-4de9-a7a4-e9e3d51402b8</guid>
+			<dc:creator><![CDATA[The Apache Cassandra® Corner]]></dc:creator>
+			<pubDate>Sun, 16 Apr 2023 13:40:35 GMT</pubDate>
+			<enclosure url="https://anchor.fm/s/99c5e268/podcast/play/68542616/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2023-7-31%2F345197556-44100-2-746214076e24a.mp3" length="27918836" type="audio/mpeg"/>
+			<itunes:summary>&lt;p&gt;In this episode, I caught up with Rahul Singh of Anant Corporation. We had a great discussion about how he started Anant, as well as some of the challenges of working with Cassandra (and other &amp;quot;big data&amp;quot; tech) in the C#/.Net world. Additionally, we go on to discuss how Anant&amp;#39;s &amp;quot;Cassandra Lunches&amp;quot; (on YouTube) came about, as well as ways to help newer folks learn the Cassandra ecosystem.&lt;/p&gt;
+</itunes:summary>
+			<itunes:explicit>false</itunes:explicit>
+			<itunes:duration>00:29:04</itunes:duration>
+			<itunes:image href="https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded/25698826/25698826-1656347369359-006a5f644496b.jpg"/>
+			<itunes:season>2</itunes:season>
+			<itunes:episode>5</itunes:episode>
+			<itunes:episodeType>full</itunes:episodeType>
+		</item>
+		<item>
+			<title><![CDATA[s2e4 - Val Karpov (Mongoose)]]></title>
+			<description><![CDATA[<p>Mongoose with Apache Cassandra®?!?!?! Yes, you heard that correctly. Listen in as I talk with Val Karpov (lead maintainer of the Mongoose project), as we discuss this exciting addition to the Cassandra developer ecosystem. Building JavaScript applications with Apache Cassandra just got a whole lot easier!</p>
+]]></description>
+			<link>https://podcasters.spotify.com/pod/show/cassandra-corner/episodes/s2e4---Val-Karpov-Mongoose-e21f6qr</link>
+			<guid isPermaLink="false">802ed596-46c6-4ee3-9ce3-0b9afbac5287</guid>
+			<dc:creator><![CDATA[The Apache Cassandra® Corner]]></dc:creator>
+			<pubDate>Mon, 03 Apr 2023 13:58:28 GMT</pubDate>
+			<enclosure url="https://anchor.fm/s/99c5e268/podcast/play/67655963/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2023-7-31%2F345193122-44100-2-4cb06849b1bc7.mp3" length="17473200" type="audio/mpeg"/>
+			<itunes:summary>&lt;p&gt;Mongoose with Apache Cassandra®?!?!?! Yes, you heard that correctly. Listen in as I talk with Val Karpov (lead maintainer of the Mongoose project), as we discuss this exciting addition to the Cassandra developer ecosystem. Building JavaScript applications with Apache Cassandra just got a whole lot easier!&lt;/p&gt;
+</itunes:summary>
+			<itunes:explicit>false</itunes:explicit>
+			<itunes:duration>00:18:12</itunes:duration>
+			<itunes:image href="https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded/25698826/25698826-1656347369359-006a5f644496b.jpg"/>
+			<itunes:season>2</itunes:season>
+			<itunes:episode>4</itunes:episode>
+			<itunes:episodeType>full</itunes:episodeType>
+		</item>
+		<item>
+			<title><![CDATA[s2e3 - Loren Sands-Ramshaw (Temporal)]]></title>
+			<description><![CDATA[<p>In this episode, I catch up with Loren Sands-Ramshaw of Temporal.  In it we talk about durable execution, their book on GraphQL, getting through system design interviews, and their upcoming talk at Cassandra Forward.  Also, this is the first episode that we&#39;re trying out a video podcast format.</p>
+]]></description>
+			<link>https://podcasters.spotify.com/pod/show/cassandra-corner/episodes/s2e3---Loren-Sands-Ramshaw-Temporal-e204aql</link>
+			<guid isPermaLink="false">526089e6-8caf-48fd-823e-c6dfd952a8f4</guid>
+			<dc:creator><![CDATA[The Apache Cassandra® Corner]]></dc:creator>
+			<pubDate>Sun, 12 Mar 2023 18:06:42 GMT</pubDate>
+			<enclosure url="https://anchor.fm/s/99c5e268/podcast/play/66251029/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2023-7-31%2F345206017-44100-2-e72787520c562.mp3" length="10931303" type="audio/mpeg"/>
+			<itunes:summary>&lt;p&gt;In this episode, I catch up with Loren Sands-Ramshaw of Temporal.  In it we talk about durable execution, their book on GraphQL, getting through system design interviews, and their upcoming talk at Cassandra Forward.  Also, this is the first episode that we&amp;#39;re trying out a video podcast format.&lt;/p&gt;
+</itunes:summary>
+			<itunes:explicit>false</itunes:explicit>
+			<itunes:duration>00:11:23</itunes:duration>
+			<itunes:image href="https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded/25698826/25698826-1656347369359-006a5f644496b.jpg"/>
+			<itunes:season>2</itunes:season>
+			<itunes:episode>3</itunes:episode>
+			<itunes:episodeType>full</itunes:episodeType>
+		</item>
+		<item>
+			<title><![CDATA[s2e2 - Aaron Morton (Cassandra Forward)]]></title>
+			<description><![CDATA[<p>Get ready for a deep-dive into the depths of Apache CassandraⓇ! &nbsp;Listen in as I sit down with Aaron Morton, as he describes his personal journey with Cassandra while doing movie rendering for major motion pictures, to the story on how he came up with the name "The Last Pickle" for his consulting company. &nbsp;Then get set as Aaron describes the details behind many new initiatives coming soon to Apache CassandraⓇ, including ACID transactions, storage-attached indexes, transactional cluster metadata, as well as his work to improve the developer experience with Stargate.</p>
+<p>Click <a href="https://www.cassandrasummit.org/cassandra-forward?utm_medium=podcast&amp;utm_source=anchor&amp;utm_campaign=cassandra_forward_Aaron_Ploetz" rel="noopener nofollow" target="_blank">here to sign up for Cassandra Forward</a> today!</p>
+]]></description>
+			<link>https://podcasters.spotify.com/pod/show/cassandra-corner/episodes/s2e2---Aaron-Morton-Cassandra-Forward-e2032v2</link>
+			<guid isPermaLink="false">ff530ab1-6f4b-4a07-9f48-6267f226c5ad</guid>
+			<dc:creator><![CDATA[The Apache Cassandra® Corner]]></dc:creator>
+			<pubDate>Sat, 11 Mar 2023 22:09:54 GMT</pubDate>
+			<enclosure url="https://anchor.fm/s/99c5e268/podcast/play/66210210/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fproduction%2Fexports%2F99c5e268%2F66210210%2Fd517b95f6b79160a4bf8b0254cc6930a.m4a" length="31888165" type="audio/x-m4a"/>
+			<itunes:summary>&lt;p&gt;Get ready for a deep-dive into the depths of Apache CassandraⓇ! &amp;nbsp;Listen in as I sit down with Aaron Morton, as he describes his personal journey with Cassandra while doing movie rendering for major motion pictures, to the story on how he came up with the name &quot;The Last Pickle&quot; for his consulting company. &amp;nbsp;Then get set as Aaron describes the details behind many new initiatives coming soon to Apache CassandraⓇ, including ACID transactions, storage-attached indexes, transactional cluster metadata, as well as his work to improve the developer experience with Stargate.&lt;/p&gt;
+&lt;p&gt;Click &lt;a href=&quot;https://www.cassandrasummit.org/cassandra-forward?utm_medium=podcast&amp;amp;utm_source=anchor&amp;amp;utm_campaign=cassandra_forward_Aaron_Ploetz&quot; rel=&quot;noopener nofollow&quot; target=&quot;_blank&quot;&gt;here to sign up for Cassandra Forward&lt;/a&gt; today!&lt;/p&gt;
+</itunes:summary>
+			<itunes:explicit>false</itunes:explicit>
+			<itunes:duration>00:32:51</itunes:duration>
+			<itunes:image href="https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded/25698826/25698826-1656347369359-006a5f644496b.jpg"/>
+			<itunes:season>2</itunes:season>
+			<itunes:episode>2</itunes:episode>
+			<itunes:episodeType>full</itunes:episodeType>
+		</item>
+		<item>
+			<title><![CDATA[s2e1 - Patrick McFadin (Cassandra Forward)]]></title>
+			<description><![CDATA[<p>Our second season of The Apache Cassandra Corner begins with a quick chat with Patrick McFadin. &nbsp;Patrick and I start out by discussing the plan for the Cassandra Summit in December, as well as what to expect with the virtual Cassandra Forward event on March 14th.</p>
+<p>Click <a href="https://www.cassandrasummit.org/cassandra-forward?utm_medium=podcast&amp;utm_source=anchor&amp;utm_campaign=cassandra_forward_Aaron_Ploetz" target="_blank">here to sign up for Cassandra Forward</a> today!</p>
+]]></description>
+			<link>https://podcasters.spotify.com/pod/show/cassandra-corner/episodes/s2e1---Patrick-McFadin-Cassandra-Forward-e1vn30m</link>
+			<guid isPermaLink="false">ae3b1ff8-6586-4d6e-9cc1-806befab16db</guid>
+			<dc:creator><![CDATA[The Apache Cassandra® Corner]]></dc:creator>
+			<pubDate>Sat, 04 Mar 2023 19:00:18 GMT</pubDate>
+			<enclosure url="https://anchor.fm/s/99c5e268/podcast/play/65817046/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fproduction%2Fexports%2F99c5e268%2F65817046%2Ffd4c8be16c5612d0153bf7e5c46bbf2c.m4a" length="10990973" type="audio/x-m4a"/>
+			<itunes:summary>&lt;p&gt;Our second season of The Apache Cassandra Corner begins with a quick chat with Patrick McFadin. &amp;nbsp;Patrick and I start out by discussing the plan for the Cassandra Summit in December, as well as what to expect with the virtual Cassandra Forward event on March 14th.&lt;/p&gt;
+&lt;p&gt;Click &lt;a href=&quot;https://www.cassandrasummit.org/cassandra-forward?utm_medium=podcast&amp;amp;utm_source=anchor&amp;amp;utm_campaign=cassandra_forward_Aaron_Ploetz&quot; target=&quot;_blank&quot;&gt;here to sign up for Cassandra Forward&lt;/a&gt; today!&lt;/p&gt;
+</itunes:summary>
+			<itunes:explicit>false</itunes:explicit>
+			<itunes:duration>00:11:19</itunes:duration>
+			<itunes:image href="https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded/25698826/25698826-1656347369359-006a5f644496b.jpg"/>
+			<itunes:season>2</itunes:season>
+			<itunes:episode>1</itunes:episode>
+			<itunes:episodeType>full</itunes:episodeType>
+		</item>
+		<item>
+			<title><![CDATA[ep13 - Alexa Simon (Sr. Data Engineer)]]></title>
+			<description><![CDATA[<p>In this episode I talk with Alexa Simon, who works as a Sr. Data Engineer for Realeyes (Szeged, Csongrad, Hungary). &nbsp;We talked a lot about her career path starting from a youth going to Math camp, to building big data systems on top of Apache Cassandra® and Apache Storm®, and even building systems for Expedia and Hotels.com. &nbsp;Alexa expanded on some of the day-to-day nuances of being a Data Engineer, even sharing a story of getting Cassandra to run on 2GB of RAM!</p>
+]]></description>
+			<link>https://podcasters.spotify.com/pod/show/cassandra-corner/episodes/ep13---Alexa-Simon-Sr--Data-Engineer-e1qf05f</link>
+			<guid isPermaLink="false">8a99e540-123e-41ff-9934-a8ba37f4c28a</guid>
+			<dc:creator><![CDATA[The Apache Cassandra® Corner]]></dc:creator>
+			<pubDate>Fri, 11 Nov 2022 20:55:12 GMT</pubDate>
+			<enclosure url="https://anchor.fm/s/99c5e268/podcast/play/60309103/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fproduction%2Fexports%2F99c5e268%2F60309103%2F813bb3e6b08e75a45cb65e30d3bc42a9.m4a" length="26952248" type="audio/x-m4a"/>
+			<itunes:summary>&lt;p&gt;In this episode I talk with Alexa Simon, who works as a Sr. Data Engineer for Realeyes (Szeged, Csongrad, Hungary). &amp;nbsp;We talked a lot about her career path starting from a youth going to Math camp, to building big data systems on top of Apache Cassandra® and Apache Storm®, and even building systems for Expedia and Hotels.com. &amp;nbsp;Alexa expanded on some of the day-to-day nuances of being a Data Engineer, even sharing a story of getting Cassandra to run on 2GB of RAM!&lt;/p&gt;
+</itunes:summary>
+			<itunes:explicit>false</itunes:explicit>
+			<itunes:duration>00:27:46</itunes:duration>
+			<itunes:image href="https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded/25698826/25698826-1656347369359-006a5f644496b.jpg"/>
+			<itunes:season>1</itunes:season>
+			<itunes:episode>13</itunes:episode>
+			<itunes:episodeType>full</itunes:episodeType>
+		</item>
+		<item>
+			<title><![CDATA[ep12 - Derek Chen-Becker (AWS Sr. Engineer and open source dev)]]></title>
+			<description><![CDATA[<p>Want to contribute to the Apache Cassandra® project, but you're not sure how to get started? &nbsp;Listen in as Derek Chen-Becker and I talk about his journey into open source, his talk at ApacheCon, and his thoughts around increasing the level of documentation and mentorship within the project.</p>
+]]></description>
+			<link>https://podcasters.spotify.com/pod/show/cassandra-corner/episodes/ep12---Derek-Chen-Becker-AWS-Sr--Engineer-and-open-source-dev-e1ptjkp</link>
+			<guid isPermaLink="false">badb5d31-bfe9-4b68-bf1a-bc32dce0d1b0</guid>
+			<dc:creator><![CDATA[The Apache Cassandra® Corner]]></dc:creator>
+			<pubDate>Wed, 02 Nov 2022 21:17:12 GMT</pubDate>
+			<enclosure url="https://anchor.fm/s/99c5e268/podcast/play/59739225/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fproduction%2Fexports%2F99c5e268%2F59739225%2Fdacefb7050046d0a42b7b8a3b49f3df7.m4a" length="24118955" type="audio/x-m4a"/>
+			<itunes:summary>&lt;p&gt;Want to contribute to the Apache Cassandra® project, but you&apos;re not sure how to get started? &amp;nbsp;Listen in as Derek Chen-Becker and I talk about his journey into open source, his talk at ApacheCon, and his thoughts around increasing the level of documentation and mentorship within the project.&lt;/p&gt;
+</itunes:summary>
+			<itunes:explicit>false</itunes:explicit>
+			<itunes:duration>00:24:51</itunes:duration>
+			<itunes:image href="https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded/25698826/25698826-1656347369359-006a5f644496b.jpg"/>
+			<itunes:season>1</itunes:season>
+			<itunes:episode>12</itunes:episode>
+			<itunes:episodeType>full</itunes:episodeType>
+		</item>
+		<item>
+			<title><![CDATA[ep11 - Mick Semb Wever (Apache Cassandra® PMC Chair)]]></title>
+			<description><![CDATA[<p>For this episode I caught up with Mick Semb Wever, the PMC Chair for the Apache Cassandra® Project. &nbsp;Mick and I discussed his journey into open source, consulting with The Last Pickle, and some of the nuances of the PMC Chair position.</p>
+]]></description>
+			<link>https://podcasters.spotify.com/pod/show/cassandra-corner/episodes/ep11---Mick-Semb-Wever-Apache-Cassandra-PMC-Chair-e1pf3rr</link>
+			<guid isPermaLink="false">b038e11d-1886-49e1-a5d0-681d897b62cb</guid>
+			<dc:creator><![CDATA[The Apache Cassandra® Corner]]></dc:creator>
+			<pubDate>Fri, 21 Oct 2022 20:58:24 GMT</pubDate>
+			<enclosure url="https://anchor.fm/s/99c5e268/podcast/play/59264315/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fproduction%2Fexports%2F99c5e268%2F59264315%2Fb7c16434d286ca38294d71659c88b4f5.m4a" length="15571573" type="audio/x-m4a"/>
+			<itunes:summary>&lt;p&gt;For this episode I caught up with Mick Semb Wever, the PMC Chair for the Apache Cassandra® Project. &amp;nbsp;Mick and I discussed his journey into open source, consulting with The Last Pickle, and some of the nuances of the PMC Chair position.&lt;/p&gt;
+</itunes:summary>
+			<itunes:explicit>false</itunes:explicit>
+			<itunes:duration>00:16:02</itunes:duration>
+			<itunes:image href="https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded/25698826/25698826-1656347369359-006a5f644496b.jpg"/>
+			<itunes:season>1</itunes:season>
+			<itunes:episode>11</itunes:episode>
+			<itunes:episodeType>full</itunes:episodeType>
+		</item>
+		<item>
+			<title><![CDATA[ep10 - Cheng Wang and Jordan West (Netflix)]]></title>
+			<description><![CDATA[<p>Recording on-location at Apache Con 2022 in New Orleans, I caught up with Cheng Wang and Jordan West of Netflix. &nbsp;We had a great time talking about dealing with bad partitions, schema disagreements, and the ecosystem of tools around the Apache Cassandra® Project.</p>
+]]></description>
+			<link>https://podcasters.spotify.com/pod/show/cassandra-corner/episodes/ep10---Cheng-Wang-and-Jordan-West-Netflix-e1p4r81</link>
+			<guid isPermaLink="false">4a325cec-83f9-4b0f-85f0-70153ae6af96</guid>
+			<dc:creator><![CDATA[The Apache Cassandra® Corner]]></dc:creator>
+			<pubDate>Sat, 15 Oct 2022 03:19:05 GMT</pubDate>
+			<enclosure url="https://anchor.fm/s/99c5e268/podcast/play/58927809/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fproduction%2Fexports%2F99c5e268%2F58927809%2F83ffa57c402d614ad3e18250f13cae81.m4a" length="20287751" type="audio/x-m4a"/>
+			<itunes:summary>&lt;p&gt;Recording on-location at Apache Con 2022 in New Orleans, I caught up with Cheng Wang and Jordan West of Netflix. &amp;nbsp;We had a great time talking about dealing with bad partitions, schema disagreements, and the ecosystem of tools around the Apache Cassandra® Project.&lt;/p&gt;
+</itunes:summary>
+			<itunes:explicit>false</itunes:explicit>
+			<itunes:duration>00:20:54</itunes:duration>
+			<itunes:image href="https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded/25698826/25698826-1656347369359-006a5f644496b.jpg"/>
+			<itunes:season>1</itunes:season>
+			<itunes:episode>10</itunes:episode>
+			<itunes:episodeType>full</itunes:episodeType>
+		</item>
+		<item>
+			<title><![CDATA[ep9 - Otavio Santana (Java Champion and open source dev)]]></title>
+			<description><![CDATA[<p>For this episode, I sat down with Otavio Santana, who is an open source developer, author and Java Champion. &nbsp;We talked a little about the early days of Apache Cassandra® and his Thrift-based Easy Cassandra project, as well as how that led him to his current open source projects like JNoSQL and the Jakarta Data Specification. &nbsp;Oh, and you're probably encapsulating your POJOs incorrectly.</p>
+]]></description>
+			<link>https://podcasters.spotify.com/pod/show/cassandra-corner/episodes/ep9---Otavio-Santana-Java-Champion-and-open-source-dev-e1nfo9r</link>
+			<guid isPermaLink="false">8044fd04-5681-4541-adbf-985ad9306701</guid>
+			<dc:creator><![CDATA[The Apache Cassandra® Corner]]></dc:creator>
+			<pubDate>Sun, 11 Sep 2022 21:56:44 GMT</pubDate>
+			<enclosure url="https://anchor.fm/s/99c5e268/podcast/play/57188091/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fproduction%2Fexports%2F99c5e268%2F57188091%2Ff2816db7f493990b8c47076fe6013207.m4a" length="25813210" type="audio/x-m4a"/>
+			<itunes:summary>&lt;p&gt;For this episode, I sat down with Otavio Santana, who is an open source developer, author and Java Champion. &amp;nbsp;We talked a little about the early days of Apache Cassandra® and his Thrift-based Easy Cassandra project, as well as how that led him to his current open source projects like JNoSQL and the Jakarta Data Specification. &amp;nbsp;Oh, and you&apos;re probably encapsulating your POJOs incorrectly.&lt;/p&gt;
+</itunes:summary>
+			<itunes:explicit>false</itunes:explicit>
+			<itunes:duration>00:26:36</itunes:duration>
+			<itunes:image href="https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded/25698826/25698826-1656347369359-006a5f644496b.jpg"/>
+			<itunes:season>1</itunes:season>
+			<itunes:episode>9</itunes:episode>
+			<itunes:episodeType>full</itunes:episodeType>
+		</item>
+		<item>
+			<title><![CDATA[ep8 - Sarma Pydipally (Udemy instructor & open source dev)]]></title>
+			<description><![CDATA[<p>In this episode I was joined by a longtime member of the Apache Cassandra<strong>®</strong> community, Sarma Pydipally. &nbsp;Listen in, as Sarma and I discuss his Prometheus-Grafana-Cassandra metrics collector, his learning resources available on Udemy and YouTube, as well as his own personal journey as a DBA moving from Oracle to Cassandra.</p>
+]]></description>
+			<link>https://podcasters.spotify.com/pod/show/cassandra-corner/episodes/ep8---Sarma-Pydipally-Udemy-instructor--open-source-dev-e1n0e00</link>
+			<guid isPermaLink="false">d12d4af8-05c3-4996-9815-fef5d273b881</guid>
+			<dc:creator><![CDATA[The Apache Cassandra® Corner]]></dc:creator>
+			<pubDate>Wed, 31 Aug 2022 11:47:23 GMT</pubDate>
+			<enclosure url="https://anchor.fm/s/99c5e268/podcast/play/56686016/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fproduction%2Fexports%2F99c5e268%2F56686016%2F0c2c0e24ec5cadf556c3b3ccebdd29f5.m4a" length="26539588" type="audio/x-m4a"/>
+			<itunes:summary>&lt;p&gt;In this episode I was joined by a longtime member of the Apache Cassandra&lt;strong&gt;®&lt;/strong&gt; community, Sarma Pydipally. &amp;nbsp;Listen in, as Sarma and I discuss his Prometheus-Grafana-Cassandra metrics collector, his learning resources available on Udemy and YouTube, as well as his own personal journey as a DBA moving from Oracle to Cassandra.&lt;/p&gt;
+</itunes:summary>
+			<itunes:explicit>false</itunes:explicit>
+			<itunes:duration>00:27:20</itunes:duration>
+			<itunes:image href="https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded/25698826/25698826-1656347369359-006a5f644496b.jpg"/>
+			<itunes:season>1</itunes:season>
+			<itunes:episode>8</itunes:episode>
+			<itunes:episodeType>full</itunes:episodeType>
+		</item>
+		<item>
+			<title><![CDATA[ep7 - Ekaterina Dimitrova (Apache Cassandra committer)]]></title>
+			<description><![CDATA[<p>Want to know more about what goes on "behind the scenes" with the Apache Cassandra<strong>®</strong> project? &nbsp;Listen in as I talk with Ekaterina Dimitrova about maintaining the project's stability for Cassandra 4.0, considerations for supporting the Java 17 JDK, and tips on how to get started with contributing to the project.</p>
+]]></description>
+			<link>https://podcasters.spotify.com/pod/show/cassandra-corner/episodes/ep7---Ekaterina-Dimitrova-Apache-Cassandra-committer-e1mmasr</link>
+			<guid isPermaLink="false">516fc898-9c7b-4c47-ac1c-1227fab93e9d</guid>
+			<dc:creator><![CDATA[The Apache Cassandra® Corner]]></dc:creator>
+			<pubDate>Sun, 21 Aug 2022 21:33:34 GMT</pubDate>
+			<enclosure url="https://anchor.fm/s/99c5e268/podcast/play/56355163/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fproduction%2Fexports%2F99c5e268%2F56355163%2Fb060c89f1d1a6f81ca05db18ca3a9cf9.m4a" length="20531935" type="audio/x-m4a"/>
+			<itunes:summary>&lt;p&gt;Want to know more about what goes on &quot;behind the scenes&quot; with the Apache Cassandra&lt;strong&gt;®&lt;/strong&gt; project? &amp;nbsp;Listen in as I talk with Ekaterina Dimitrova about maintaining the project&apos;s stability for Cassandra 4.0, considerations for supporting the Java 17 JDK, and tips on how to get started with contributing to the project.&lt;/p&gt;
+</itunes:summary>
+			<itunes:explicit>false</itunes:explicit>
+			<itunes:duration>00:21:09</itunes:duration>
+			<itunes:image href="https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded/25698826/25698826-1656347369359-006a5f644496b.jpg"/>
+			<itunes:season>1</itunes:season>
+			<itunes:episode>7</itunes:episode>
+			<itunes:episodeType>full</itunes:episodeType>
+		</item>
+		<item>
+			<title><![CDATA[ep6 - Jeff Beck (SmartThings)]]></title>
+			<description><![CDATA[<p>Ever wanted to know what happens when you power-on your Samsung Smart TV? &nbsp;As it turns out, much of the underlying resources are backed by Apache Cassandra®. &nbsp;Be sure to listen as I talk with Jeff Beck (Director @ SmartThings) about supporting Apache Cassandra® at a global scale, and leveraging tools like Reaper and Datadog metrics.</p>
+]]></description>
+			<link>https://podcasters.spotify.com/pod/show/cassandra-corner/episodes/ep6---Jeff-Beck-SmartThings-e1lmka6</link>
+			<guid isPermaLink="false">73dfc1de-5c33-4e98-939e-b2799e88f40e</guid>
+			<dc:creator><![CDATA[The Apache Cassandra® Corner]]></dc:creator>
+			<pubDate>Thu, 28 Jul 2022 14:00:06 GMT</pubDate>
+			<enclosure url="https://anchor.fm/s/99c5e268/podcast/play/55316230/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fproduction%2Fexports%2F99c5e268%2F55316230%2Fba391c3808f6c19cbdda6611ca9831cc.m4a" length="25950650" type="audio/x-m4a"/>
+			<itunes:summary>&lt;p&gt;Ever wanted to know what happens when you power-on your Samsung Smart TV? &amp;nbsp;As it turns out, much of the underlying resources are backed by Apache Cassandra®. &amp;nbsp;Be sure to listen as I talk with Jeff Beck (Director @ SmartThings) about supporting Apache Cassandra® at a global scale, and leveraging tools like Reaper and Datadog metrics.&lt;/p&gt;
+</itunes:summary>
+			<itunes:explicit>false</itunes:explicit>
+			<itunes:duration>00:26:44</itunes:duration>
+			<itunes:image href="https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded/25698826/25698826-1656347369359-006a5f644496b.jpg"/>
+			<itunes:season>1</itunes:season>
+			<itunes:episode>6</itunes:episode>
+			<itunes:episodeType>full</itunes:episodeType>
+		</item>
+		<item>
+			<title><![CDATA[ ep5 - Melissa Logan (Constantia)]]></title>
+			<description><![CDATA[<p>How does open source marketing work and how does it help the Apache Cassandra® project? &nbsp;Listen in as Constantia's Melissa Logan and I talk about open source, Cassandra, and the Data on Kubernetes community.</p>
+]]></description>
+			<link>https://podcasters.spotify.com/pod/show/cassandra-corner/episodes/ep5---Melissa-Logan-Constantia-e1kgp40</link>
+			<guid isPermaLink="false">61cbfc60-3c0b-4390-9475-b4526d119453</guid>
+			<dc:creator><![CDATA[The Apache Cassandra® Corner]]></dc:creator>
+			<pubDate>Thu, 30 Jun 2022 12:04:33 GMT</pubDate>
+			<enclosure url="https://anchor.fm/s/99c5e268/podcast/play/54075968/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fproduction%2Fexports%2F99c5e268%2F54075968%2Fa949e3a7d00cc2bd123b14be83db97f7.m4a" length="21335890" type="audio/x-m4a"/>
+			<itunes:summary>&lt;p&gt;How does open source marketing work and how does it help the Apache Cassandra® project? &amp;nbsp;Listen in as Constantia&apos;s Melissa Logan and I talk about open source, Cassandra, and the Data on Kubernetes community.&lt;/p&gt;
+</itunes:summary>
+			<itunes:explicit>false</itunes:explicit>
+			<itunes:duration>00:21:59</itunes:duration>
+			<itunes:image href="https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded400/25698826/25698826-1656347370958-fd3c8cdc3009.jpg"/>
+			<itunes:season>1</itunes:season>
+			<itunes:episode>5</itunes:episode>
+			<itunes:episodeType>full</itunes:episodeType>
+		</item>
+		<item>
+			<title><![CDATA[ep4 - Patrick McFadin (Apache Cassandra 4.1)]]></title>
+			<description><![CDATA[<p>Nothing to see here...because well, it's a podcast, right? &nbsp;But I did get to spend some time with Patrick McFadin discussing our favorite database - Apache Cassandra! &nbsp;Listen in as we talk a little about the early days of Cassandra as well as the new, upcoming Cassandra 4.1 release.</p>
+]]></description>
+			<link>https://podcasters.spotify.com/pod/show/cassandra-corner/episodes/ep4---Patrick-McFadin-Apache-Cassandra-4-1-e1k8k1l</link>
+			<guid isPermaLink="false">46564b8c-fd7f-4aa7-a56a-ea77e6a5eaad</guid>
+			<dc:creator><![CDATA[The Apache Cassandra® Corner]]></dc:creator>
+			<pubDate>Tue, 21 Jun 2022 18:02:38 GMT</pubDate>
+			<enclosure url="https://anchor.fm/s/99c5e268/podcast/play/53808629/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fproduction%2Fexports%2F99c5e268%2F53808629%2F6142346f8009abf95928a214010cc14b.m4a" length="22577772" type="audio/x-m4a"/>
+			<itunes:summary>&lt;p&gt;Nothing to see here...because well, it&apos;s a podcast, right? &amp;nbsp;But I did get to spend some time with Patrick McFadin discussing our favorite database - Apache Cassandra! &amp;nbsp;Listen in as we talk a little about the early days of Cassandra as well as the new, upcoming Cassandra 4.1 release.&lt;/p&gt;
+</itunes:summary>
+			<itunes:explicit>false</itunes:explicit>
+			<itunes:duration>00:23:15</itunes:duration>
+			<itunes:image href="https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded400/25698826/25698826-1653421970952-9c42725e5ee08.jpg"/>
+			<itunes:season>1</itunes:season>
+			<itunes:episode>4</itunes:episode>
+			<itunes:episodeType>full</itunes:episodeType>
+		</item>
+		<item>
+			<title><![CDATA[ep3 - Ryan Wright (Quine.io)]]></title>
+			<description><![CDATA[<p>In this episode I talked with Ryan Wright (Philosopher-CEO of thatDot) about Quine.io, a streaming graph which uses Cassandra for large scale persistence.</p>
+]]></description>
+			<link>https://podcasters.spotify.com/pod/show/cassandra-corner/episodes/ep3---Ryan-Wright-Quine-io-e1jntpe</link>
+			<guid isPermaLink="false">88fa3f98-651a-479f-b354-2d4f0d1a8c5c</guid>
+			<dc:creator><![CDATA[The Apache Cassandra® Corner]]></dc:creator>
+			<pubDate>Mon, 13 Jun 2022 14:01:00 GMT</pubDate>
+			<enclosure url="https://anchor.fm/s/99c5e268/podcast/play/53261550/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fproduction%2Fexports%2F99c5e268%2F53261550%2F86ab14ad8f89e4da4265e8d4c1864072.m4a" length="28778274" type="audio/x-m4a"/>
+			<itunes:summary>&lt;p&gt;In this episode I talked with Ryan Wright (Philosopher-CEO of thatDot) about Quine.io, a streaming graph which uses Cassandra for large scale persistence.&lt;/p&gt;
+</itunes:summary>
+			<itunes:explicit>false</itunes:explicit>
+			<itunes:duration>00:29:39</itunes:duration>
+			<itunes:image href="https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded400/25698826/25698826-1653421970952-9c42725e5ee08.jpg"/>
+			<itunes:season>1</itunes:season>
+			<itunes:episode>3</itunes:episode>
+			<itunes:episodeType>full</itunes:episodeType>
+		</item>
+		<item>
+			<title><![CDATA[ep2 - Scott Backman and Ryan Koski (large scale e-commerce Cassandra)]]></title>
+			<description><![CDATA[<p>On this particular morning I sat down with Scott Backman and Ryan Koski for a discussion about running Cassandra at large enterprise scale across many types of infrastructure. &nbsp;We talked about how Cassandra has evolved, working with hybrid cluster deployments, and some of the nuances with running Cassandra on Kubernetes.</p>
+]]></description>
+			<link>https://podcasters.spotify.com/pod/show/cassandra-corner/episodes/ep2---Scott-Backman-and-Ryan-Koski-large-scale-e-commerce-Cassandra-e1jfljd</link>
+			<guid isPermaLink="false">304595a1-ba31-4e88-8294-8be5a4f00621</guid>
+			<dc:creator><![CDATA[The Apache Cassandra® Corner]]></dc:creator>
+			<pubDate>Mon, 06 Jun 2022 18:56:33 GMT</pubDate>
+			<enclosure url="https://anchor.fm/s/99c5e268/podcast/play/52991021/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fproduction%2Fexports%2F99c5e268%2F52991021%2F4d59e600a18721fb1f3a46fa5ae172a7.m4a" length="31708918" type="audio/x-m4a"/>
+			<itunes:summary>&lt;p&gt;On this particular morning I sat down with Scott Backman and Ryan Koski for a discussion about running Cassandra at large enterprise scale across many types of infrastructure. &amp;nbsp;We talked about how Cassandra has evolved, working with hybrid cluster deployments, and some of the nuances with running Cassandra on Kubernetes.&lt;/p&gt;
+</itunes:summary>
+			<itunes:explicit>false</itunes:explicit>
+			<itunes:duration>00:32:40</itunes:duration>
+			<itunes:image href="https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded400/25698826/25698826-1653421970952-9c42725e5ee08.jpg"/>
+			<itunes:season>1</itunes:season>
+			<itunes:episode>2</itunes:episode>
+			<itunes:episodeType>full</itunes:episodeType>
+		</item>
+		<item>
+			<title><![CDATA[Test Episode - ALTER TABLE]]></title>
+			<description><![CDATA[<p><strong>Testing Anchor's options with a discussion on the ALTER TABLE statement, how it evolved in Apache Cassandra, and its guardrails in Astra DB.</strong></p>
+]]></description>
+			<link>https://podcasters.spotify.com/pod/show/cassandra-corner/episodes/Test-Episode---ALTER-TABLE-e1j123i</link>
+			<guid isPermaLink="false">cb92c492-2ccf-4dbd-99fd-bf2df231a252</guid>
+			<dc:creator><![CDATA[The Apache Cassandra® Corner]]></dc:creator>
+			<pubDate>Tue, 24 May 2022 19:56:54 GMT</pubDate>
+			<enclosure url="https://anchor.fm/s/99c5e268/podcast/play/52512306/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fproduction%2Fexports%2F99c5e268%2F52512306%2F6e4300f1919896951a4f95a171d21547.m4a" length="4689364" type="audio/x-m4a"/>
+			<itunes:summary>&lt;p&gt;&lt;strong&gt;Testing Anchor&apos;s options with a discussion on the ALTER TABLE statement, how it evolved in Apache Cassandra, and its guardrails in Astra DB.&lt;/strong&gt;&lt;/p&gt;
+</itunes:summary>
+			<itunes:explicit>false</itunes:explicit>
+			<itunes:duration>00:04:49</itunes:duration>
+			<itunes:image href="https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded400/25698826/25698826-1653421970952-9c42725e5ee08.jpg"/>
+			<itunes:season>1</itunes:season>
+			<itunes:episodeType>bonus</itunes:episodeType>
+		</item>
+		<item>
+			<title><![CDATA[ep1 - Lakhan Samani (Authorizer)]]></title>
+			<description><![CDATA[<p>Lakhan Samani joins me to discuss his open source <a href="https://github.com/authorizerdev/authorizer" target="_blank">Authorizer</a> project, which can use many different databases on the backend, including Apache Cassandra.</p>
+]]></description>
+			<link>https://podcasters.spotify.com/pod/show/cassandra-corner/episodes/ep1---Lakhan-Samani-Authorizer-e1j10hv</link>
+			<guid isPermaLink="false">099f894f-7b6a-44f9-bee2-1cda43485afb</guid>
+			<dc:creator><![CDATA[The Apache Cassandra® Corner]]></dc:creator>
+			<pubDate>Tue, 24 May 2022 19:53:01 GMT</pubDate>
+			<enclosure url="https://anchor.fm/s/99c5e268/podcast/play/52510719/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fproduction%2Fexports%2F99c5e268%2F52510719%2Fbdd404389baf7487c5c8805f6f7f2149.m4a" length="22724612" type="audio/x-m4a"/>
+			<itunes:summary>&lt;p&gt;Lakhan Samani joins me to discuss his open source &lt;a href=&quot;https://github.com/authorizerdev/authorizer&quot; target=&quot;_blank&quot;&gt;Authorizer&lt;/a&gt; project, which can use many different databases on the backend, including Apache Cassandra.&lt;/p&gt;
+</itunes:summary>
+			<itunes:explicit>false</itunes:explicit>
+			<itunes:duration>00:23:25</itunes:duration>
+			<itunes:image href="https://d12xoj7p9moygp.cloudfront.net/images/default-podcast-image.png"/>
+			<itunes:season>1</itunes:season>
+			<itunes:episode>1</itunes:episode>
+			<itunes:episodeType>full</itunes:episodeType>
+		</item>
+	</channel>
+</rss>

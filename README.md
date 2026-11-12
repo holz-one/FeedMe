@@ -2,30 +2,9 @@
 
 ![FeedMe 3.0](static/feedme.jpg)
 
-FeedMe is a basic RSS feed and Podcast parser with XML namespace support for JavaScript and jQuery web apps, now packaged as a static site for GitHub Pages with daily feed caching via GitHub Actions.
+FeedMe 3.0 is a lightweight RSS 2.0, Atom, and iTunes podcast parser with XML namespace support for JavaScript and jQuery web applications, packaged as a static site for GitHub Pages with automated daily feed caching via GitHub Actions.
 
-I have done some repairs to the code and tested it with jQuery 3.7.1, removing properties that are left empty or undefined so that the returned object is smaller and has less wasted space.
-
-## Interface Overview
-
-- **Home Tab (`#home`)**: Displays the cached podcasts sidebar (`podcasts/feeds.json`) with live search filtering and original related projects in the left column, alongside the FeedMe banner.
-- **Globe Tab (`#chan`)**: Splits the view 40% / 60% between the searchable/sortable **Episodes** sidebar (`#chan_info` and `#playlist`) and the current episode media player and show notes (`#item_info`).
-- **Feed Data Pop-up (`#feedInfoModal`)**: Displays **Channel** metadata (first tab) and **Episode** metadata (second tab) in the same modal pop-up, with fields grouped into importance panels (**Essential**, **Details & iTunes**, and **Technical & Protocol**).
-
-## Project Structure
-
-```text
-.
-├── .github/workflows/update-and-deploy.yml  # Daily feed caching + GitHub Pages deploy
-├── cache_rss.py                             # Downloads feeds from podcasts.yaml into podcasts/
-├── index.html                               # Static RSS feed reader & podcast player
-├── podcasts.yaml                            # Podcast feed subscriptions (also supports podcast.yaml)
-├── podcasts/                                # Cached .rss feeds + generated feeds.json manifest
-├── requirements.txt                         # Python dependencies for cache_rss.py
-└── static/
-    ├── feedme.jpg                           # FeedMe banner illustration
-    └── feedme/                              # CSS, JS, and Bootstrap font assets
-```
+This codebase has been updated and verified with jQuery 3.7.1, pruning empty or undefined fields from parsed feed results to produce cleaner, more compact JavaScript objects. Please note that this is the final version of the project and is no longer actively maintained.
 
 ## Caching Podcast Feeds Locally
 
@@ -69,20 +48,6 @@ python3 -m http.server 8000
 
 Then open <http://localhost:8000/>.
 
-## GitHub Actions & GitHub Pages Setup
-
-The workflow in `.github/workflows/update-and-deploy.yml` runs:
-- Daily at `06:00 UTC` (`schedule` cron)
-- On every push to `main` or `master`
-- Manually via **Actions -> Cache Podcasts and Deploy to GitHub Pages -> Run workflow**
-
-To enable GitHub Pages for this repository:
-1. Push the repository to GitHub.
-2. Open **Settings -> Pages** in your GitHub repository.
-3. Under **Build and deployment**, set **Source** to **GitHub Actions**.
-
-On each run, the workflow installs Python dependencies, runs `python cache_rss.py --prune` to refresh `podcasts/`, and publishes `index.html`, `static/`, and `podcasts/` directly to GitHub Pages.
-
 ## Reference
 
 * [RSS 2.0](http://www.rssboard.org/rss-2-0)
@@ -107,3 +72,16 @@ jQuery(function ($) {
     });
 });
 ```
+
+## My Original Related PHP/JS Projects
+
+* [ProxyCast](https://www.phpclasses.org/package/7693-PHP-Generate-JSON-from-podcast-feeds-to-serve-players.html)
+* [SalamCast PHP Podcast Generator](https://www.phpclasses.org/package/7973-PHP-Generate-RSS-feeds-for-podcasts.html)
+* [WaldScan](https://www.phpclasses.org/package/7968-PHP-Scan-directories-for-files-with-certain-extensions.html)
+* [FeedMe](https://www.jsclasses.org/package/194-JavaScript-Retrieve-and-parse-a-RSS-feed.html)
+* [SalamCast Podcast Player](https://www.jsclasses.org/package/191-JavaScript-Play-podcast-episodes-from-RSS-feed-using-jPlayer.html)
+* [CSS One](https://www.phpclasses.org/package/7573-PHP-Combine-CSS-and-images-into-a-single-stylesheet.html)
+* [eKatab ePub reader](https://www.phpclasses.org/package/9876-PHP-Display-ebooks-in-the-epub-format-on-Web-pages.html)
+* [PHP Comic Reader Tools](https://www.phpclasses.org/package/11667-PHP-Display-images-from-comic-books-in-HTML-pages.html)
+
+These projects are no longer being developed, but are still available for use. Some may be translated to Python in the future as part of this project.

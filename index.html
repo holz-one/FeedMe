@@ -24,6 +24,8 @@
                 feed_list: '#podcast',
                 feed: '#playlist',
                 channel: '#chan_info',
+                channel_details: '#chan_details',
+                updated: '#chan_updated',
                 item: '#item_info',
                 modal: '#feedInfoModal',
                 modal_body: '#feedModalBody'
@@ -34,44 +36,42 @@
 <body>
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a href="#" class="navbar-brand">FeedMe 3.0</a>
+            <div class="navbar-layout">
+                <div class="navbar-left-col">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="#" class="navbar-brand">FeedMe 3.0</a>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="menu">
+                        <ul class="nav navbar-nav nav-tabs">
+                            <li class="active">
+                                <a data-toggle="tab" href="#home" title="Home">
+                                    <span class="glyphicon glyphicon-home"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a data-toggle="tab" href="#chan" title="Podcasts &amp; Episodes">
+                                    <span class="glyphicon glyphicon-globe"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div>
+                <div id="chan_info" class="navbar-channel-title"></div>
             </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="menu">
-                <ul class="nav navbar-nav nav-tabs">
-                    <li class="active">
-                        <a data-toggle="tab" href="#home" title="Home">
-                            <span class="glyphicon glyphicon-home"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a data-toggle="tab" href="#chan" title="Podcasts &amp; Episodes">
-                            <span class="glyphicon glyphicon-globe"></span>
-                        </a>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="#" class="open-feed-modal" data-inspector-tab="channel" title="Feed &amp; Episode Metadata">
-                            <span class="glyphicon glyphicon-info-sign"></span> Feed Data
-                        </a>
-                    </li>
-                </ul>
-            </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
 
     <div class="container-fluid">
         <div class="tab-content">
-            <!-- Home Tab: Cached Podcasts + Old Projects on Left, Tall Banner on Right -->
+            <!-- Home Tab: Cached Podcasts on Left, Tall Banner on Right -->
             <div id="home" class="tab-pane fade in active">
                 <div class="row">
                     <div class="col-md-3 col-sm-4">
@@ -93,27 +93,6 @@
                                 </ul>
                             </div>
                         </div>
-
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">My Original Related PHP/JS Projects</h4>
-                            </div>
-                            <div class="panel-body">
-                                <ul class="list-unstyled">
-                                    <li><a href="https://www.phpclasses.org/package/7693-PHP-Generate-JSON-from-podcast-feeds-to-serve-players.html" target="_blank" rel="noopener noreferrer">ProxyCast</a></li>
-                                    <li><a href="https://www.phpclasses.org/package/7973-PHP-Generate-RSS-feeds-for-podcasts.html" target="_blank" rel="noopener noreferrer">SalamCast PHP Podcast Generator</a></li>
-                                    <li><a href="https://www.phpclasses.org/package/7968-PHP-Scan-directories-for-files-with-certain-extensions.html" target="_blank" rel="noopener noreferrer">WaldScan</a></li>
-                                    <li><a href="https://www.jsclasses.org/package/194-JavaScript-Retrieve-and-parse-a-RSS-feed.html" target="_blank" rel="noopener noreferrer">FeedMe</a></li>
-                                    <li><a href="https://www.jsclasses.org/package/191-JavaScript-Play-podcast-episodes-from-RSS-feed-using-jPlayer.html" target="_blank" rel="noopener noreferrer">SalamCast Podcast Player</a></li>
-                                    <li><a href="https://www.phpclasses.org/package/7573-PHP-Combine-CSS-and-images-into-a-single-stylesheet.html" target="_blank" rel="noopener noreferrer">CSS One</a></li>
-                                    <li><a href="https://www.phpclasses.org/package/9876-PHP-Display-ebooks-in-the-epub-format-on-Web-pages.html" target="_blank" rel="noopener noreferrer">eKatab ePub reader</a></li>
-                                    <li><a href="https://www.phpclasses.org/package/11667-PHP-Display-images-from-comic-books-in-HTML-pages.html" target="_blank" rel="noopener noreferrer">PHP Comic Reader Tools</a></li>
-                                </ul>
-                                <p class="text-muted small" style="margin-top: 10px; margin-bottom: 0;">
-                                    These projects are no longer being developed, but are still available for use. Some may be translated to Python in the future as part of this project.
-                                </p>
-                            </div>
-                        </div>
                     </div>
 
                     <div class="col-md-9 col-sm-8">
@@ -130,8 +109,7 @@
                     <div class="chan-episodes-col">
                         <div class="panel panel-default">
                             <div class="panel-heading clearfix">
-                                <span class="glyphicon glyphicon-globe"></span> <strong>Episodes</strong>
-                                <span id="chan_info" class="text-muted small" style="margin-left: 6px;"></span>
+                                <strong>Updated:</strong> <span id="chan_updated" class="text-muted">—</span>
                                 <div class="pull-right">
                                     <button type="button" class="btn btn-xs btn-default open-feed-modal" data-inspector-tab="channel" title="Channel &amp; Episode Data">
                                         <span class="glyphicon glyphicon-info-sign"></span>
@@ -142,6 +120,10 @@
                                 </div>
                             </div>
                             <div class="panel-body">
+                                <div id="chan_details" class="chan-details">
+                                    <p class="text-muted">Select a podcast from the Home tab to load its episodes.</p>
+                                </div>
+                                <hr />
                                 <div class="input-group input-group-sm" style="margin-bottom: 10px;">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
                                     <input type="text" id="searchEpisode" class="form-control" placeholder="Filter Episodes" />

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-11T21:29:28+00:00",
+  "generated_at": "2026-11-12T14:56:04+00:00",
   "feeds": [
     {
       "title": "This Week in Linux",
@@ -18,6 +18,54 @@
       "filename": "Late_Night_Linux.rss",
       "url": "podcasts/Late_Night_Linux.rss",
       "source_url": "https://latenightlinux.com/feed/mp3"
+    },
+    {
+      "title": "AI Engineering podcast",
+      "filename": "AI_Engineering_podcast.rss",
+      "url": "podcasts/AI_Engineering_podcast.rss",
+      "source_url": "https://serve.podhome.fm/rss/c9abdd38-a5dc-5eb2-96fd-f833f93208a7"
+    },
+    {
+      "title": "Data engineering podcast",
+      "filename": "Data_engineering_podcast.rss",
+      "url": "podcasts/Data_engineering_podcast.rss",
+      "source_url": "https://serve.podhome.fm/rss/1c0357c0-6aba-5766-a2d5-2090d8dab6bc"
+    },
+    {
+      "title": "DataTalks.Club",
+      "filename": "DataTalks.Club.rss",
+      "url": "podcasts/DataTalks.Club.rss",
+      "source_url": "https://anchor.fm/s/41286f68/podcast/rss"
+    },
+    {
+      "title": "Destination Linux",
+      "filename": "Destination_Linux.rss",
+      "url": "podcasts/Destination_Linux.rss",
+      "source_url": "https://feeds.fireside.fm/destinationlinux/rss"
+    },
+    {
+      "title": "Linux Out Loud",
+      "filename": "Linux_Out_Loud.rss",
+      "url": "podcasts/Linux_Out_Loud.rss",
+      "source_url": "https://feeds.fireside.fm/dlnxtend/rss"
+    },
+    {
+      "title": "Switched to Linux",
+      "filename": "Switched_to_Linux.rss",
+      "url": "podcasts/Switched_to_Linux.rss",
+      "source_url": "https://odysee.com/$/rss/@switchedtolinux:0"
+    },
+    {
+      "title": "The Lowdown",
+      "filename": "The_Lowdown.rss",
+      "url": "podcasts/The_Lowdown.rss",
+      "source_url": "https://rss2.flightcast.com/l2k5wawp71vbqbsc92xl6222.xml"
+    },
+    {
+      "title": "Apache Cassandra",
+      "filename": "Apache_Cassandra.rss",
+      "url": "podcasts/Apache_Cassandra.rss",
+      "source_url": "https://anchor.fm/s/99c5e268/podcast/rss"
     }
   ]
 }

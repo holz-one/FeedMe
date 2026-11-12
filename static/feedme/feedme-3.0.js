@@ -568,7 +568,7 @@ function detectType(str) {
             $tbody.append($tr);
         });
         $table.append($tbody);
-        $panel.append($('<div>').addClass('table-responsive').append($table));
+        $panel.append($table);
         return $panel;
     }
 
@@ -660,6 +660,8 @@ function detectType(str) {
             feed_list: '#podcast',
             feed: '#playlist',
             channel: '#chan_info',
+            channel_details: '#chan_details',
+            updated: '#chan_updated',
             item: '#item_info',
             modal: '#feedInfoModal',
             modal_body: '#feedModalBody'
@@ -669,6 +671,13 @@ function detectType(str) {
 
         var currentFeed = null;
         var currentItem = null;
+
+        var syncNavbarOffset = function () {
+            var navHeight = $('.navbar-fixed-top').outerHeight() || 50;
+            $('body').css('padding-top', (navHeight + 20) + 'px');
+        };
+        $(window).on('resize', syncNavbarOffset);
+        syncNavbarOffset();
 
         // common html
         var div_row = function (txt) { return '<div class="row"><div class="col-md-12 ">' + txt + '</div></div>'; };
@@ -736,10 +745,8 @@ function detectType(str) {
             $(opt.item).empty();
 
             var $panel = $('<div>').addClass('panel panel-default');
-            var $heading = $('<div>').addClass('panel-heading clearfix').append(
-                $('<h3>').addClass('panel-title pull-left').css('padding-top', '4px').text(i.title || 'Untitled Episode'),
-                $('<button type="button" class="btn btn-xs btn-info pull-right open-feed-modal" data-inspector-tab="episode">')
-                    .html('<span class="glyphicon glyphicon-info-sign"></span> Feed Data')
+            var $heading = $('<div>').addClass('panel-heading').append(
+                $('<h3>').addClass('panel-title').text(i.title || 'Untitled Episode')
             );
             var $body = $('<div>').addClass('panel-body');
 
@@ -784,11 +791,11 @@ function detectType(str) {
 
             $(opt.feed).empty();
             $(opt.channel).empty();
+            $(opt.channel_details).empty();
             $(opt.item).empty();
             $('#searchEpisode').val('');
 
             var episodeItems = [];
-            var episodeCount = 0;
             if (feed.items) {
                 $.each(feed.items, function (n, i) {
                     var $itemLink = $('<a>')
@@ -796,13 +803,39 @@ function detectType(str) {
                         .data('itemIndex', n)
                         .text(i.title || 'Untitled Episode');
                     episodeItems.push($('<li>').append($itemLink)[0]);
-                    episodeCount += 1;
                 });
                 $(opt.feed).append(episodeItems);
             }
 
-            // Keep left sidebar focused on the episode list with a compact channel label
-            $(opt.channel).text((feed.title || 'Podcast') + ' (' + episodeCount + ')');
+            // Display channel title in top bar aligned with the loaded episode and updated date in sidebar header
+            $(opt.channel).text(feed.title || 'Podcast');
+            var rawUpdated = feed.lastBuildDate || feed.pubDate || (feed.items && feed.items.length ? feed.items[0].pubdate : '');
+            $(opt.updated).html(rawUpdated ? detectType(rawUpdated) : 'Unknown');
+
+            // Render channel image and description above the episode search bar without scrollbars
+            var chanImgUrl = (opt.itunes && feed.itunes && feed.itunes.img) || (feed.image && feed.image.url) || '';
+            var chanDescHtml = (feed.description) || (opt.itunes && feed.itunes && feed.itunes.desc) || '';
+            if (chanImgUrl || chanDescHtml) {
+                var $detailsRow = $('<div>').addClass('chan-details-row');
+                if (chanImgUrl) {
+                    var $img = $('<img>').addClass('chan-cover-img').attr({
+                        src: chanImgUrl,
+                        alt: feed.title || 'Channel artwork'
+                    });
+                    var $coverWrap = $('<div>').addClass('chan-cover-wrap');
+                    if (feed.link) {
+                        $coverWrap.append($('<a>').attr({ href: feed.link, target: '_blank', rel: 'noopener noreferrer' }).append($img));
+                    } else {
+                        $coverWrap.append($img);
+                    }
+                    $detailsRow.append($coverWrap);
+                }
+                if (chanDescHtml) {
+                    $detailsRow.append($('<div>').addClass('chan-desc').html(chanDescHtml));
+                }
+                $(opt.channel_details).append($detailsRow);
+            }
+            syncNavbarOffset();
 
             var $firstEpisode = $(opt.feed + ' li a').first();
             if ($firstEpisode.length) {
