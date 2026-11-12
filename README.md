@@ -9,7 +9,7 @@ This codebase has been updated and verified with jQuery 3.7.1, pruning empty or 
 ## Caching Podcast Feeds Locally
 
 Add or update subscriptions in `podcasts.yaml`:
-
+5
 ```yaml
 feeds:
   This Week in Linux: https://feeds.fireside.fm/thisweekinlinux/rss
@@ -84,4 +84,4 @@ jQuery(function ($) {
 * [eKatab ePub reader](https://www.phpclasses.org/package/9876-PHP-Display-ebooks-in-the-epub-format-on-Web-pages.html)
 * [PHP Comic Reader Tools](https://www.phpclasses.org/package/11667-PHP-Display-images-from-comic-books-in-HTML-pages.html)
 
-These projects are no longer being developed, but are still available for use. Some may be translated to Python in the future as part of this project.
+These projects are no longer being developed, but are still available at the links above. Some may be translated into Python in future projects.
